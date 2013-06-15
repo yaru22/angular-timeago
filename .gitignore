@@ -5,6 +5,7 @@
 .git.*
 .gitignore.*
 .sass-cache
+*.sublime-*
 components
 log
 node_modules
