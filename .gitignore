@@ -6,7 +6,7 @@
 .gitignore.*
 .sass-cache
 *.sublime-*
+*.log
 components
 log
 node_modules
-npm-debug.log
