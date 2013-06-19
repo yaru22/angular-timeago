@@ -8,5 +8,6 @@
 *.sublime-*
 *.log
 components
+dist
 log
 node_modules
