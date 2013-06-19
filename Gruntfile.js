@@ -84,6 +84,12 @@ module.exports = function(grunt) {
       }
     },
 
+    open: {  // grunt-open
+      demo: {
+        path: 'http://localhost:9999/demo'
+      }
+    },
+
     uglify: {  // grunt-contrib-uglify
       options: {
         banner: '<%= meta.banner %>'
@@ -131,6 +137,7 @@ module.exports = function(grunt) {
 
   // Run dev server.
   grunt.registerTask('run', [
+    'open:demo',
     'connect:dev'
   ]);
 };
