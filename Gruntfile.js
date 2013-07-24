@@ -51,6 +51,18 @@ module.exports = function(grunt) {
       }
     },
 
+    copy: {
+      dist: {
+        files: [{
+          expand: true,
+          flatten: true,
+          src: ['src/*.html'],
+          dest: '<%= dirs.dest %>/',
+          filter: 'isFile'
+        }]
+      }
+    },
+
     cssmin: {  // grunt-contrib-cssmin
       combine: {
         files: {
@@ -132,7 +144,8 @@ module.exports = function(grunt) {
     'concat',
     'ngmin',
     'uglify',
-    'cssmin'
+    'cssmin',
+    'copy'
   ]);
 
   // Run dev server.
