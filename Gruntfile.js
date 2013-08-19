@@ -161,6 +161,6 @@ module.exports = function(grunt) {
   // Run dev server.
   grunt.registerTask('run', [
     'open',
-    'connect:dev'
+    'connect'
   ]);
 };

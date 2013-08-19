@@ -9,7 +9,7 @@ describe('blink', function() {
   // load the code
   beforeEach(module('ng-directive-seed'));
 
-  // load the templates
+  // load the template
   beforeEach(module('blink.tmpl'));
 
   beforeEach(inject(function($rootScope, $compile) {
