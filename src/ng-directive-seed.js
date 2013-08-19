@@ -8,9 +8,9 @@ angular.module('ng-directive-seed', [])
       return {
         restrict: 'E,A',
         transclude: true,
-        templateUrl: '/src/blink.html',
+        templateUrl: 'blink.tmpl',
         scope: {},
-        link: function(scope, element, attrs) {
+        link: function(scope, element) {
           var marquee = element.find('marquee');
           var input = element.find('input');
 

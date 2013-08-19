@@ -11,6 +11,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     dirs: {
+      demo: 'demo',
       dest: 'dist'
     },
 
@@ -45,18 +46,27 @@ module.exports = function(grunt) {
         options: {
           port: 9999,
           hostname: '0.0.0.0',
-          base: '.',
+          base: '<%= dirs.demo %>',
           keepalive: true
         }
       }
     },
 
     copy: {
+      demo: {
+        files: [{
+          expand: true,
+          flatten: true,
+          src: ['<%= dirs.dest %>/*'],
+          dest: '<%= dirs.demo %>/',
+          filter: 'isFile'
+        }]
+      },
       dist: {
         files: [{
           expand: true,
           flatten: true,
-          src: ['src/*.html'],
+          src: ['src/*.tmpl'],
           dest: '<%= dirs.dest %>/',
           filter: 'isFile'
         }]
@@ -72,7 +82,7 @@ module.exports = function(grunt) {
     },
 
     jshint: {  // grunt-contrib-jshint
-      all: ['Gruntfile.js', 'src/*.js', 'test/unit/*.js'],
+      all: ['Gruntfile.js', 'src/**/*.js', 'test/unit/**/*.js'],
       options: {
         jshintrc: '.jshintrc'
       }
@@ -80,7 +90,7 @@ module.exports = function(grunt) {
 
     karma: {  // grunt-karma
       single: {
-        configFile: 'test/karma-unit.conf.js',
+        configFile: 'karma-unit.conf.js',
         singleRun: true
       }
     },
@@ -98,7 +108,7 @@ module.exports = function(grunt) {
 
     open: {  // grunt-open
       demo: {
-        path: 'http://localhost:9999/demo'
+        path: 'http://localhost:9999/'
       }
     },
 
@@ -145,7 +155,8 @@ module.exports = function(grunt) {
     'ngmin',
     'uglify',
     'cssmin',
-    'copy'
+    'copy:dist',
+    'copy:demo'
   ]);
 
   // Run dev server.

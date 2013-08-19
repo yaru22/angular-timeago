@@ -13,14 +13,10 @@
     "url": "git://github.com/yaru22/ng-directive-seed.git"
   },
   "dependencies": {
-    "angular": "~1.0.6",
-    "angular-cookies": "~1.0.6",
-    "angular-resource": "~1.0.6",
-    "angular-sanitize": "~1.0.6"
+    "angular": "PatternConsulting/bower-angular#1.1.5",
+    "jquery": "~2.0.3"
   },
   "devDependencies": {
-    "angular-mocks": "~1.0.6",
-    "angular-scenario": "~1.0.6",
-    "chai": "~1.5.0"
+    "chai": "~1.7.2"
   }
 }

@@ -2,12 +2,11 @@
 # .gitignore
 #
 
-.git.*
-.gitignore.*
-.sass-cache
+.git
+.gitignore
 *.sublime-*
 *.log
-components
+bower_components
 dist
 log
 node_modules
