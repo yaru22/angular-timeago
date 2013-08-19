@@ -57,7 +57,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           flatten: true,
-          src: ['<%= dirs.dest %>/*'],
+          src: ['src/*'],
           dest: '<%= dirs.demo %>/',
           filter: 'isFile'
         }]
@@ -155,13 +155,12 @@ module.exports = function(grunt) {
     'ngmin',
     'uglify',
     'cssmin',
-    'copy:dist',
-    'copy:demo'
+    'copy'
   ]);
 
   // Run dev server.
   grunt.registerTask('run', [
-    'open:demo',
+    'open',
     'connect:dev'
   ]);
 };
