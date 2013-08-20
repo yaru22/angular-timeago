@@ -4,14 +4,14 @@
     "email": "yaru22@gmail.com"
   },
 
-  "name": "ng-directive-seed",
-  "description": "Angular directive seed that is used to kickstart the directive implementation.",
+  "name": "ng-component-seed",
+  "description": "Angular component (directive, filter, service, etc.) seed that is used to kickstart the implementation.",
   "version": "0.0.1",
   "license": "MIT",
-  "homepage": "https://github.com/yaru22/ng-directive-seed",
+  "homepage": "https://github.com/yaru22/ng-component-seed",
   "repository": {
     "type": "git",
-    "url": "git://github.com/yaru22/ng-directive-seed.git"
+    "url": "git://github.com/yaru22/ng-component-seed.git"
   },
 
   "keywords": [
