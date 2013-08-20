@@ -10,18 +10,14 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
 
-  <link href="ng-directive-seed.css" rel="stylesheet" />
+  <link href="component.css" rel="stylesheet" />
 </head>
 <body ng-controller="demoController">
-  <blink>Bling bring bring</blink>
-  <blink>Hello world</blink>
+  <blink>{{ text1 }}</blink>
+  <blink>{{ text2 }}</blink>
 
   <script src="angular.js"></script>
-  <script src="ng-directive-seed.js"></script>
-  <script>
-    angular.module('ngApp', ['ng-directive-seed'])
-        .controller('demoController', function($scope) {
-    })
-  </script>
+  <script src="component.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>

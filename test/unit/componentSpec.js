@@ -7,7 +7,7 @@ describe('blink', function() {
   var elm, scope;
 
   // load the code
-  beforeEach(module('ng-directive-seed'));
+  beforeEach(module('namespace.component-name'));
 
   // load the template
   beforeEach(module('blink.tmpl'));
