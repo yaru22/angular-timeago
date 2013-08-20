@@ -163,4 +163,10 @@ module.exports = function(grunt) {
     'open',
     'connect'
   ]);
+
+  // Shortcuts
+  grunt.registerTask('b', 'build');
+  grunt.registerTask('c', 'clean');
+  grunt.registerTask('s', 'run');
+  grunt.registerTask('t', 'test');
 };
