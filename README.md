@@ -55,6 +55,13 @@ Do the necessary work
 - etc.
 
 Sync your `seed` branch to `ng-component-seed/master` time to time and merge it to `master` branch to get updates from `ng-component-seed`.
+```
+$ git checkout seed
+$ git pull
+$ git checkout master
+$ git merge seed
+<resolve conflicts and updating done>
+```
 
 
 License
