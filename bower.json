@@ -17,6 +17,6 @@
     "jquery": "~2.0.3"
   },
   "devDependencies": {
-    "chai": "~1.7.2"
+    "chai": "~1.8.0"
   }
 }
