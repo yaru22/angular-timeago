@@ -3,20 +3,28 @@
     "name": "Brian Park",
     "email": "yaru22@gmail.com"
   },
+
   "name": "ng-component-seed",
   "description": "Angular component (directive, filter, service, etc.) seed that is used to kickstart the implementation.",
   "version": "0.1.0",
   "license": "MIT",
+
   "homepage": "https://github.com/yaru22/ng-component-seed",
   "repository": {
     "type": "git",
     "url": "git://github.com/yaru22/ng-component-seed.git"
   },
+
+  "ignore": [
+    "demo",
+    "test"
+  ],
   "dependencies": {
-    "angular": "PatternConsulting/bower-angular#1.1.5",
-    "jquery": "~2.0.3"
+    "angular": "~1.2.6",
+    "angular-mocks": "~1.2.6"
   },
   "devDependencies": {
-    "chai": "~1.8.0"
+    "chai": "~1.8.1",
+    "jquery": "~2.0.3"
   }
 }
