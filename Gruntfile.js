@@ -112,6 +112,13 @@ module.exports = function(grunt) {
       }
     },
 
+    release: { // grunt-release
+      options: {
+        file: 'bower.json',
+        npm: false
+      }
+    },
+
     uglify: {  // grunt-contrib-uglify
       options: {
         banner: '<%= meta.banner %>'
