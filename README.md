@@ -1,4 +1,4 @@
-Angular Component Seed
+Angular Component Seed [![Analytics](https://ga-beacon.appspot.com/UA-2694988-7/ng-component-seed/readme?pixel)](https://github.com/yaru22/ng-component-seed)
 ======================
 This repo contains all you need to kickstart implementing your own Angular component (directive, filter, service, etc.). Just clone this repo, implement your component and share with other AngularJS enthusiasts!
 
