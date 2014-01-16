@@ -27,9 +27,10 @@ module.exports = function(config) {
       'bower_components/angular-mocks/angular-mocks.js',
 
       'src/**/*.js',
-      'src/**/*.tmpl',
+      'template/cache.js',
 
-      'test/unit/**/*.js'
+      'test/unit/**/*.js',
+      'test/unit/**/*.tmpl'
     ],
 
 
@@ -46,8 +47,11 @@ module.exports = function(config) {
 
 
     ngHtml2JsPreprocessor: {
-      // strip this from the file path
-      stripPrefix: 'src/'
+      cacheIdFromPath: function (filepath) {
+        return filepath.replace(/^test\/unit\//, '');
+      },
+
+      moduleName: 'tmpl'
     },
 
 

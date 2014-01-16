@@ -3,15 +3,18 @@
     "name": "Brian Park",
     "email": "yaru22@gmail.com"
   },
+
   "name": "ng-component-seed",
   "description": "Angular component (directive, filter, service, etc.) seed that is used to kickstart the implementation.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
+
   "homepage": "https://github.com/yaru22/ng-component-seed",
   "repository": {
     "type": "git",
     "url": "git://github.com/yaru22/ng-component-seed.git"
   },
+
   "keywords": [
     "angular",
     "directive",
@@ -19,10 +22,12 @@
     "node.js",
     "seed"
   ],
+
   "dependencies": {
   },
   "devDependencies": {
     "grunt": "~0.4.2",
+    "grunt-angular-templates": "~0.5.1",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-connect": "~0.5.0",
@@ -42,6 +47,7 @@
     "karma-ng-html2js-preprocessor": "~0.1",
     "matchdep": "~0.3.0"
   },
+
   "scripts": {
     "test": "grunt test"
   }

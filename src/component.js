@@ -9,13 +9,14 @@
 
 // TODO: Make sure to rename the module.
 var component = angular.module('namespace.component-name', [
+  'namespace.component-name.tmpls'
 ]);
 
 component.directive('blink', function() {
   return {
     restrict: 'E,A',
     transclude: true,
-    templateUrl: 'blink.tmpl',
+    templateUrl: 'template/blink.tmpl',
     scope: {},
     link: function(scope, element) {
       var marquee = element.find('marquee');
