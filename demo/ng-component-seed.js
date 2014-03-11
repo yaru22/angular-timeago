@@ -1,4 +1,17 @@
+/**
+ * Angular component (directive, filter, service, etc.) seed that is used to kickstart the implementation.
+ * @version v0.2.0 - 2014-03-11
+ * @link https://github.com/yaru22/ng-component-seed
+ * @author Brian Park <yaru22@gmail.com>
+ * @license MIT License, http://www.opensource.org/licenses/MIT
+ */
+/**
+ * This is an example directive taken from a tutorial at
+ * http://www.adobe.com/devnet/html5/articles/angularjs-directives-and-the-computer-science-of-javascript.edu.html
+ */
+/* global angular */
 'use strict';
+// TODO: Make sure to rename the module.
 var component = angular.module('namespace.component-name', ['namespace.component-name.tmpls']);
 component.directive('blink', function () {
   return {
@@ -9,6 +22,7 @@ component.directive('blink', function () {
     link: function (scope, element) {
       var marquee = element.find('marquee');
       var input = element.find('input');
+      // edit mode boolean controls the visibilty of the blink and input
       scope.editMode = false;
       input.bind('blur', function () {
         scope.$apply(function () {
@@ -16,6 +30,7 @@ component.directive('blink', function () {
           marquee.text(input.val());
         });
       });
+      // called when the marquee tag is clicked
       scope.edit = function () {
         scope.editMode = true;
         input.val(marquee.text());
