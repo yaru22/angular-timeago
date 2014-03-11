@@ -20,11 +20,11 @@
     "test"
   ],
   "dependencies": {
-    "angular": "~1.2.6",
-    "angular-mocks": "~1.2.6"
+    "angular": "1.2.10",
+    "angular-mocks": "1.2.10"
   },
   "devDependencies": {
-    "chai": "~1.8.1",
-    "jquery": "~2.0.3"
+    "chai": "1.9.0",
+    "jquery": "2.1.0"
   }
 }
