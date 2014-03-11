@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html ng-app="ngApp"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>angular-timeago Demo Page</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+</head>
+<body ng-controller="demoController">
+  <h1>angular-timeago Examples</h1>
+
+  <div>
+    Current time: {{ nowTime() }}
+  </div>
+  <div>
+    Page load time: {{ pageLoadTime }}
+  </div>
+
+  <hr>
+
+  <div>
+    <h2>Directive Example</h2>
+    You opened this demo page <time-ago from-time='{{ pageLoadTime }}'></time-ago>
+  </div>
+
+  <div>
+    <h2>Filter Example</h2>
+    You opened this demo page {{ pageLoadTime | timeAgo }}.
+  </div>
+
+  <div>
+    This repo was created <span time-ago from-time="2014-03-11T05:25:00Z"></span>
+  </div>
+
+  <script src="angular.js"></script>
+  <script src="angular-timeago.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
