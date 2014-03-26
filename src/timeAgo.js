@@ -104,7 +104,7 @@ angular.module('yaru22.angular-timeago', [
     if (angular.isNumber(iso8601)) {
       return parseInt(iso8601, 10);
     }
-    var s = iso8601.trim();
+    var s = (iso8601 || '').trim();
     s = s.replace(/\.\d+/, ''); // remove milliseconds
     s = s.replace(/-/, '/').replace(/-/, '/');
     s = s.replace(/T/, ' ').replace(/Z/, ' UTC');
