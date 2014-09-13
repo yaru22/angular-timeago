@@ -15,9 +15,8 @@
     "url": "git://github.com/yaru22/angular-timeago.git"
   },
 
-  "main": {
-    "dist/angular-timeago.js"
-  },
+  "main": "dist/angular-timeago.js",
+
   "ignore": [
     "demo",
     "test"
