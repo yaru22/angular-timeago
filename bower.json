@@ -1,33 +1,28 @@
 {
   "author": {
-    "name": "Brian Park",
-    "email": "yaru22@gmail.com"
+    "email": "yaru22@gmail.com",
+    "name": "Brian Park"
   },
-
-  "name": "angular-timeago",
-  "description": "Angular directive/filter/service for formatting date so that it displays how long ago the given time was compared to now.",
-  "version": "0.1.2",
-  "license": "MIT",
-
-  "homepage": "https://github.com/yaru22/angular-timeago",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/yaru22/angular-timeago.git"
-  },
-
-  "main": {
-    "dist/angular-timeago.js"
-  },
-  "ignore": [
-    "demo",
-    "test"
-  ],
   "dependencies": {
     "angular": "~1.2.10",
     "angular-mocks": "~1.2.10"
   },
+  "description": "Angular directive/filter/service for formatting date so that it displays how long ago the given time was compared to now.",
   "devDependencies": {
     "chai": "1.9.0",
     "jquery": "2.1.0"
-  }
+  },
+  "homepage": "https://github.com/yaru22/angular-timeago",
+  "ignore": [
+    "demo",
+    "test"
+  ],
+  "license": "MIT",
+  "main": "src/timeAgo.js",
+  "name": "angular-timeago",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yaru22/angular-timeago.git"
+  },
+  "version": "0.1.2"
 }
