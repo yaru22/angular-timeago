@@ -84,7 +84,7 @@ angular.module('yaru22.angular-timeago', [
   service.inWords = function (distanceMillis) {
     var lang = document.documentElement.lang;
     var $l = service.settings.strings[lang];
-    if(typeof $lang === 'undefined')
+    if(typeof $l === 'undefined')
       var $l = service.settings.strings.en_US
     var prefix = $l.prefixAgo;
     var suffix = $l.suffixAgo;
