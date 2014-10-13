@@ -41,27 +41,51 @@ angular.module('yaru22.angular-timeago', [
     refreshMillis: 60000,
     allowFuture: false,
     strings: {
-      prefixAgo: null,
-      prefixFromNow: null,
-      suffixAgo: 'ago',
-      suffixFromNow: 'from now',
-      seconds: 'less than a minute',
-      minute: 'about a minute',
-      minutes: '%d minutes',
-      hour: 'about an hour',
-      hours: 'about %d hours',
-      day: 'a day',
-      days: '%d days',
-      month: 'about a month',
-      months: '%d months',
-      year: 'about a year',
-      years: '%d years',
-      numbers: []
+      en_US: {
+        prefixAgo: null,
+        prefixFromNow: null,
+        suffixAgo: 'ago',
+        suffixFromNow: 'from now',
+        seconds: 'less than a minute',
+        minute: 'about a minute',
+        minutes: '%d minutes',
+        hour: 'about an hour',
+        hours: 'about %d hours',
+        day: 'a day',
+        days: '%d days',
+        month: 'about a month',
+        months: '%d months',
+        year: 'about a year',
+        years: '%d years',
+        numbers: []
+      },
+      he_IL: {
+        prefixAgo: null,
+        prefixFromNow: null,
+        suffixAgo: 'לפני',
+        suffixFromNow: 'מעכשיו',
+        seconds: 'פחות מדקה',
+        minute: 'כדקה',
+        minutes: '%d דקות',
+        hour: 'כשעה',
+        hours: 'כ %d שעות',
+        day: 'יום',
+        days: '%d ימים',
+        month: 'כחודש',
+        months: '%d חודשים',
+        year: 'כשנה',
+        years: '%d שנים',
+        numbers: []
+      }
+      
     }
   };
 
   service.inWords = function (distanceMillis) {
-    var $l = service.settings.strings;
+    var lang = document.documentElement.lang;
+    var $l = service.settings.strings[lang];
+    if(typeof $l === 'undefined')
+      var $l = service.settings.strings.en_US
     var prefix = $l.prefixAgo;
     var suffix = $l.suffixAgo;
     if (service.settings.allowFuture) {
