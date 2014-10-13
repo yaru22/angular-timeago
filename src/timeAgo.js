@@ -41,7 +41,7 @@ angular.module('yaru22.angular-timeago', [
     refreshMillis: 60000,
     allowFuture: false,
     strings: {
-      en_US: {
+      'en_US': {
         prefixAgo: null,
         prefixFromNow: null,
         suffixAgo: 'ago',
@@ -59,7 +59,7 @@ angular.module('yaru22.angular-timeago', [
         years: '%d years',
         numbers: []
       },
-      he_IL: {
+      'he_IL': {
         prefixAgo: null,
         prefixFromNow: null,
         suffixAgo: 'לפני',
@@ -76,16 +76,16 @@ angular.module('yaru22.angular-timeago', [
         year: 'כשנה',
         years: '%d שנים',
         numbers: []
-      }
-      
+      },
     }
   };
 
   service.inWords = function (distanceMillis) {
     var lang = document.documentElement.lang;
     var $l = service.settings.strings[lang];
-    if(typeof $l === 'undefined')
-      var $l = service.settings.strings.en_US
+    if (typeof $l === 'undefined') {
+      $l = service.settings.strings['en_US'];
+    }
     var prefix = $l.prefixAgo;
     var suffix = $l.suffixAgo;
     if (service.settings.allowFuture) {
