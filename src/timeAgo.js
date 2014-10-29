@@ -77,7 +77,7 @@ angular.module('yaru22.angular-timeago', [
         years: '%d שנים',
         numbers: []
       }
-      
+
     }
   };
 
@@ -121,7 +121,11 @@ angular.module('yaru22.angular-timeago', [
         substitute($l.years, Math.round(years));
 
     var separator = $l.wordSeparator === undefined ?  ' ' : $l.wordSeparator;
-    return [prefix, words, suffix].join(separator).trim();
+    if(lang === 'he_IL'){
+      return [prefix, suffix, words].join(separator).trim();
+    } else {
+      return [prefix, words, suffix].join(separator).trim();
+    }
   };
 
   service.parse = function (iso8601) {
