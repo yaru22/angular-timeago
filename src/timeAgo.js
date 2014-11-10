@@ -59,24 +59,24 @@ angular.module('yaru22.angular-timeago', [
         years: '%d years',
         numbers: []
       },
-	  'de_DE': {
-		prefixAgo: 'vor',
-		prefixFromNow: null,
-		suffixAgo: null,
-		suffixFromNow: 'from now',
-		seconds: 'weniger als eine Minute',
-		minute: 'ca. einer Minute',
-		minutes: '%d minutes',
-		hour: 'ca. einer Stunde',
-		hours: 'ca. %d Stunden',
-		day: 'einem Tag',
-		days: '%d Tagen',
-		month: 'ca. einem Monat',
-		months: '%d Monaten',
-		year: 'ca. einem Jahr',
-		years: '%d Jahren',
-		numbers: []
-	  },
+      'de_DE': {
+        prefixAgo: 'vor',
+        prefixFromNow: null,
+        suffixAgo: null,
+        suffixFromNow: 'from now',
+        seconds: 'weniger als eine Minute',
+        minute: 'ca. einer Minute',
+        minutes: '%d minutes',
+        hour: 'ca. einer Stunde',
+        hours: 'ca. %d Stunden',
+        day: 'einem Tag',
+        days: '%d Tagen',
+        month: 'ca. einem Monat',
+        months: '%d Monaten',
+        year: 'ca. einem Jahr',
+        years: '%d Jahren',
+        numbers: []
+      },
       'he_IL': {
         prefixAgo: null,
         prefixFromNow: null,
@@ -94,7 +94,7 @@ angular.module('yaru22.angular-timeago', [
         year: 'כשנה',
         years: '%d שנים',
         numbers: []
-      },
+      }
     }
   };
 
