@@ -4,8 +4,8 @@
     "name": "Brian Park"
   },
   "dependencies": {
-    "angular": "~1.2.10",
-    "angular-mocks": "~1.2.10"
+    "angular": "^1.2.10",
+    "angular-mocks": "^1.2.10"
   },
   "description": "Angular directive/filter/service for formatting date so that it displays how long ago the given time was compared to now.",
   "devDependencies": {
