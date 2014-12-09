@@ -66,7 +66,7 @@ angular.module('yaru22.angular-timeago', [
         suffixFromNow: 'from now',
         seconds: 'weniger als eine Minute',
         minute: 'ca. einer Minute',
-        minutes: '%d minutes',
+        minutes: '%d Minuten',
         hour: 'ca. einer Stunde',
         hours: 'ca. %d Stunden',
         day: 'einem Tag',
