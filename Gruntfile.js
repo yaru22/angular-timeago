@@ -199,7 +199,8 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'jshint:all',
     'ngtemplates',
-    'karma:single'
+    'karma:single',
+    'protractor'
   ]);
 
   // Build task.
