@@ -137,6 +137,23 @@ module.exports = function (grunt) {
       }
     },
 
+    protractor: {
+      options: {
+        configFile: "node_modules/protractor/example/conf.js", // Default config file
+        keepAlive: true,
+        noColor: false,
+        args: {
+
+        }
+      },
+      demo_app: {   // Grunt requires at least one target to run so you can simply put 'all: {}' here too.
+        options: {
+          configFile: "protractor-e2e.conf.js", // Target-specific config file
+          args: {} // Target-specific arguments
+        }
+      }
+    },
+
     release: {  // grunt-release
       options: {
         file: 'bower.json',

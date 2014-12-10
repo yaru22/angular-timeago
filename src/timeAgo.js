@@ -22,10 +22,10 @@ angular.module('yaru22.angular-timeago', [
       });
     }
   };
-}).factory('nowTime', function ($timeout) {
+}).factory('nowTime', function ($window) {
   var nowTime = Date.now();
   var updateTime = function() {
-    $timeout(function() {
+    $window.setTimeout(function() {
       nowTime = Date.now();
       updateTime();
     }, 1000);
