@@ -1,6 +1,6 @@
 /**
  * Angular directive/filter/service for formatting date so that it displays how long ago the given time was compared to now.
- * @version v0.1.2 - 2014-04-16
+ * @version v0.1.4 - 2014-12-10
  * @link https://github.com/yaru22/angular-timeago
  * @author Brian Park <yaru22@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -29,13 +29,16 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
     };
   }
 ]).factory('nowTime', [
-  '$timeout',
-  function ($timeout) {
+  '$window',
+  '$rootScope',
+  function ($window, $rootScope) {
     var nowTime = Date.now();
     var updateTime = function () {
-      $timeout(function () {
-        nowTime = Date.now();
-        updateTime();
+      $window.setTimeout(function () {
+        $rootScope.$apply(function () {
+          nowTime = Date.now();
+          updateTime();
+        });
       }, 1000);
     };
     updateTime();
@@ -49,26 +52,68 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
     refreshMillis: 60000,
     allowFuture: false,
     strings: {
-      prefixAgo: null,
-      prefixFromNow: null,
-      suffixAgo: 'ago',
-      suffixFromNow: 'from now',
-      seconds: 'less than a minute',
-      minute: 'about a minute',
-      minutes: '%d minutes',
-      hour: 'about an hour',
-      hours: 'about %d hours',
-      day: 'a day',
-      days: '%d days',
-      month: 'about a month',
-      months: '%d months',
-      year: 'about a year',
-      years: '%d years',
-      numbers: []
+      'en_US': {
+        prefixAgo: null,
+        prefixFromNow: null,
+        suffixAgo: 'ago',
+        suffixFromNow: 'from now',
+        seconds: 'less than a minute',
+        minute: 'about a minute',
+        minutes: '%d minutes',
+        hour: 'about an hour',
+        hours: 'about %d hours',
+        day: 'a day',
+        days: '%d days',
+        month: 'about a month',
+        months: '%d months',
+        year: 'about a year',
+        years: '%d years',
+        numbers: []
+      },
+      'de_DE': {
+        prefixAgo: 'vor',
+        prefixFromNow: null,
+        suffixAgo: null,
+        suffixFromNow: 'from now',
+        seconds: 'weniger als einer Minute',
+        minute: 'ca. einer Minute',
+        minutes: '%d Minuten',
+        hour: 'ca. einer Stunde',
+        hours: 'ca. %d Stunden',
+        day: 'einem Tag',
+        days: '%d Tagen',
+        month: 'ca. einem Monat',
+        months: '%d Monaten',
+        year: 'ca. einem Jahr',
+        years: '%d Jahren',
+        numbers: []
+      },
+      'he_IL': {
+        prefixAgo: null,
+        prefixFromNow: null,
+        suffixAgo: '\u05dc\u05e4\u05e0\u05d9',
+        suffixFromNow: '\u05de\u05e2\u05db\u05e9\u05d9\u05d5',
+        seconds: '\u05e4\u05d7\u05d5\u05ea \u05de\u05d3\u05e7\u05d4',
+        minute: '\u05db\u05d3\u05e7\u05d4',
+        minutes: '%d \u05d3\u05e7\u05d5\u05ea',
+        hour: '\u05db\u05e9\u05e2\u05d4',
+        hours: '\u05db %d \u05e9\u05e2\u05d5\u05ea',
+        day: '\u05d9\u05d5\u05dd',
+        days: '%d \u05d9\u05de\u05d9\u05dd',
+        month: '\u05db\u05d7\u05d5\u05d3\u05e9',
+        months: '%d \u05d7\u05d5\u05d3\u05e9\u05d9\u05dd',
+        year: '\u05db\u05e9\u05e0\u05d4',
+        years: '%d \u05e9\u05e0\u05d9\u05dd',
+        numbers: []
+      }
     }
   };
   service.inWords = function (distanceMillis) {
-    var $l = service.settings.strings;
+    var lang = document.documentElement.lang;
+    var $l = service.settings.strings[lang];
+    if (typeof $l === 'undefined') {
+      $l = service.settings.strings['en_US'];
+    }
     var prefix = $l.prefixAgo;
     var suffix = $l.suffixAgo;
     if (service.settings.allowFuture) {
@@ -89,11 +134,19 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
     }
     var words = seconds < 45 && substitute($l.seconds, Math.round(seconds)) || seconds < 90 && substitute($l.minute, 1) || minutes < 45 && substitute($l.minutes, Math.round(minutes)) || minutes < 90 && substitute($l.hour, 1) || hours < 24 && substitute($l.hours, Math.round(hours)) || hours < 42 && substitute($l.day, 1) || days < 30 && substitute($l.days, Math.round(days)) || days < 45 && substitute($l.month, 1) || days < 365 && substitute($l.months, Math.round(days / 30)) || years < 1.5 && substitute($l.year, 1) || substitute($l.years, Math.round(years));
     var separator = $l.wordSeparator === undefined ? ' ' : $l.wordSeparator;
-    return [
-      prefix,
-      words,
-      suffix
-    ].join(separator).trim();
+    if (lang === 'he_IL') {
+      return [
+        prefix,
+        suffix,
+        words
+      ].join(separator).trim();
+    } else {
+      return [
+        prefix,
+        words,
+        suffix
+      ].join(separator).trim();
+    }
   };
   service.parse = function (iso8601) {
     if (angular.isNumber(iso8601)) {
@@ -118,5 +171,12 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
       var diff = nowTime() - fromTime;
       return timeAgo.inWords(diff);
     };
+  }
+]);
+angular.module('namespace.component-name.tmpls', []).run([
+  '$templateCache',
+  function ($templateCache) {
+    'use strict';
+    $templateCache.put('template/blink.tmpl', '<div><marquee ng-click=edit() ng-hide=editMode scrollamount=100% ng-transclude=""></marquee><input ng-show=editMode></div>');
   }
 ]);

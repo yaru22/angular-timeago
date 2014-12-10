@@ -7,3 +7,15 @@ This project is based off of [a thread](https://groups.google.com/forum/#!topic/
 ## Demo
 Check out the demo [here](http://www.brianpark.ca/projects/angular_timeago/demo/).
 
+## Testing
+
+In order to run the e2e tests you might need to install a Selenium server via:
+
+```
+./node_modules/grunt-protractor-runner/scripts/webdriver-manager-update```
+
+And then use grunt to run all tests (unit and e2e):
+
+```
+grunt test
+```
