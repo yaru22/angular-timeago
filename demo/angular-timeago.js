@@ -30,12 +30,15 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
   }
 ]).factory('nowTime', [
   '$window',
-  function ($window) {
+  '$rootScope',
+  function ($window, $rootScope) {
     var nowTime = Date.now();
     var updateTime = function () {
       $window.setTimeout(function () {
-        nowTime = Date.now();
-        updateTime();
+        $rootScope.$apply(function () {
+          nowTime = Date.now();
+          updateTime();
+        });
       }, 1000);
     };
     updateTime();
