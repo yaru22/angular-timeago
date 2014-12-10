@@ -29,11 +29,11 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
     };
   }
 ]).factory('nowTime', [
-  '$window',
-  function ($window) {
+  '$interval',
+  function ($interval) {
     var nowTime = Date.now();
     var updateTime = function () {
-      $window.setTimeout(function () {
+      $interval(function () {
         nowTime = Date.now();
         updateTime();
       }, 1000);
