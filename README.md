@@ -9,24 +9,27 @@ Check out the demo [here](http://www.brianpark.ca/projects/angular_timeago/demo/
 
 ## Usage
 **Filter**
-
-  {{myDate | timeAgo}}
+```
+{{myDate | timeAgo}}
+```
 Displays time ago since `myDate`. `myDate` can be time in **milliseconds since January 1st 1970** (see [MDN Date.prototype.getTime](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime)) or an **ISO 8601** string (see [MDN Date.prototype.toISOString](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString))
 
 **Language support**
 angular-timeago currently supports: `en_US`, `de_DE`, `he_IL`. If you want more languages: feel free to contribute!
 The language is determined by the string in `document.documentElement.lang` which you can set in your HTML markup:
-
-  <html lang="en_US"></html>
-
+```
+<html lang="en_US"></html>
+```
 Or directly in JS:
-
-  window.document.documentElement.lang = 'en_US';
-
+```
+window.document.documentElement.lang = 'en_US';
+```
 You can also add additional or alter existing languages at runtime by extending the service:
-
-  timeAgo.settings.strings.en_US = {
-  };
+```
+timeAgo.settings.strings.en_US = {
+  // appropriate keys here
+};
+```
 For more details refer to the [source code](https://github.com/yaru22/angular-timeago/blob/master/src/timeAgo.js#L47).
   
 
@@ -42,4 +45,3 @@ And then use grunt to run all tests (unit and e2e):
 
 ```
 grunt test
-```
