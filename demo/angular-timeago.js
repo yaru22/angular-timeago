@@ -1,6 +1,6 @@
 /**
  * Angular directive/filter/service for formatting date so that it displays how long ago the given time was compared to now.
- * @version v0.1.6 - 2014-12-18
+ * @version v0.1.7 - 2015-01-15
  * @link https://github.com/yaru22/angular-timeago
  * @author Brian Park <yaru22@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -105,6 +105,24 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
         year: '\u05db\u05e9\u05e0\u05d4',
         years: '%d \u05e9\u05e0\u05d9\u05dd',
         numbers: []
+      },
+      'pt_BR': {
+        prefixAgo: null,
+        prefixFromNow: 'daqui a',
+        suffixAgo: 'atr\xe1s',
+        suffixFromNow: null,
+        seconds: 'menos de um minuto',
+        minute: 'cerca de um minuto',
+        minutes: '%d minutos',
+        hour: 'cerca de uma hora',
+        hours: 'cerca de %d horas',
+        day: 'um dia',
+        days: '%d dias',
+        month: 'cerca de um m\xeas',
+        months: '%d meses',
+        year: 'cerca de um ano',
+        years: '%d anos',
+        numbers: []
       }
     }
   };
@@ -171,12 +189,5 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
       var diff = nowTime() - fromTime;
       return timeAgo.inWords(diff);
     };
-  }
-]);
-angular.module('namespace.component-name.tmpls', []).run([
-  '$templateCache',
-  function ($templateCache) {
-    'use strict';
-    $templateCache.put('template/blink.tmpl', '<div><marquee ng-click=edit() ng-hide=editMode scrollamount=100% ng-transclude=""></marquee><input ng-show=editMode></div>');
   }
 ]);
