@@ -114,6 +114,24 @@ angular.module('yaru22.angular-timeago', [
         year: 'cerca de um ano',
         years: '%d anos',
         numbers: []
+      },
+      'fr_FR': {
+        prefixAgo: 'il y a',
+        prefixFromNow: null,
+        suffixAgo: null,
+        suffixFromNow: 'from now',
+        seconds: 'moins d\'une minute',
+        minute: 'environ une minute',
+        minutes: '%d minutes',
+        hour: 'environ une heure',
+        hours: 'environ %d heures',
+        day: 'un jour',
+        days: '%d jours',
+        month: 'environ un mois',
+        months: '%d mois',
+        year: 'environ un an',
+        years: '%d ans',
+        numbers: []
       }
     }
   };
