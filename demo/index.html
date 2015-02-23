@@ -28,10 +28,11 @@
   </div>
 
   <div>
-    <h2>Filter Example</h2>
-    You opened this demo page {{ pageLoadTime | timeAgo }}.
+    <h3>You can use an ISO8601 String or a Date object</h3>
+    <p>This is an ISO8601 String: {{ "2015-02-23T09:38:47.765Z" | timeAgo }}</p>
+    <p>This is a Date Object: {{ nowTimeAsDateObejct | timeAgo }}</p>
   </div>
-
+  <br/>
   <div>
     This repo was created <span time-ago from-time="2014-03-11T05:25:00Z"></span>
   </div>

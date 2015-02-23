@@ -188,6 +188,9 @@ angular.module('yaru22.angular-timeago', [
     if (angular.isNumber(iso8601)) {
       return parseInt(iso8601, 10);
     }
+    if (iso8601 instanceof Date){
+      return iso8601;
+    }
     var s = (iso8601 || '').trim();
     s = s.replace(/\.\d+/, ''); // remove milliseconds
     s = s.replace(/-/, '/').replace(/-/, '/');
