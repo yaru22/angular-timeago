@@ -18,4 +18,11 @@ describe('timeAgo', function () {
     var hourAgoIso8601 = ngDateFilter(new Date(Date.now() - 3600 * 1000), 'yyyy-MM-dd HH:mm');
     expect(filter(hourAgoIso8601)).to.equal('about an hour ago');
   });
+
+  it('accept Date object', function () {
+    var nowDate = new Date();
+    var nowDateString = ngDateFilter(nowDate, 'yyyy-MM-dd HH:mm');
+    expect(filter(nowDate)).to.equal(filter(nowDateString));
+
+  })
 });
