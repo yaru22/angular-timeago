@@ -8,6 +8,12 @@ This project is based off of [a thread](https://groups.google.com/forum/#!topic/
 Check out the demo [here](http://www.brianpark.ca/projects/angular_timeago/demo/).
 
 ## Usage
+**Reference in module**
+```
+var app = angular.module('ngApp', [
+  'yaru22.angular-timeago'
+]);
+```
 **Filter**
 ```
 {{myDate | timeAgo}}
