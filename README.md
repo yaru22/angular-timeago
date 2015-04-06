@@ -8,6 +8,10 @@ This project is based off of [a thread](https://groups.google.com/forum/#!topic/
 Check out the demo [here](http://www.brianpark.ca/projects/angular_timeago/demo/).
 
 ## Usage
+**Install via Bower**
+```
+bower install --save angular-timeago
+```
 **Reference in module**
 ```
 var app = angular.module('ngApp', [
