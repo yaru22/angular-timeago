@@ -11,7 +11,7 @@ angular.module('yaru22.angular-timeago', [
 
       // Track the fromTime attribute
       attrs.$observe('fromTime', function (value) {
-        fromTime = timeAgo.parse(value);
+        fromTime = timeAgo.parse(parseInt(value));
       });
 
       // Track changes to time difference
