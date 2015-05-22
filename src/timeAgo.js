@@ -221,7 +221,7 @@ angular.module('yaru22.angular-timeago', [
   };
 
   service.parse = function (iso8601) {
-    if (angular.isNumber(iso8601)) {
+    if (!angular.isNumber(iso8601)) {
       return parseInt(iso8601, 10);
     }
     if (iso8601 instanceof Date){
