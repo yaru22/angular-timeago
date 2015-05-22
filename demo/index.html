@@ -28,9 +28,10 @@
   </div>
 
   <div>
-    <h3>You can use an ISO8601 String or a Date object</h3>
+    <h3>You can use an ISO8601 String, a Date object or epoch time.</h3>
     <p>This is an ISO8601 String: {{ "2015-02-23T09:38:47.765Z" | timeAgo }}</p>
-    <p>This is a Date Object: {{ nowTimeAsDateObejct | timeAgo }}</p>
+    <p>This is a Date Object: {{ nowTimeAsDateObject | timeAgo }}</p>
+    <p>This is an epoch time: {{ 1432315313285 | timeAgo }}</p>
   </div>
   <br/>
   <div>

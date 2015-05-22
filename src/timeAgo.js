@@ -220,19 +220,21 @@ angular.module('yaru22.angular-timeago', [
     }
   };
 
-  service.parse = function (iso8601) {
-    if (!angular.isNumber(iso8601)) {
-      return parseInt(iso8601, 10);
+  service.parse = function (input) {
+    if (input instanceof Date){
+      return input;
+    } else if (angular.isNumber(input)) {
+      return new Date(input);
+    } else if (/^\d+$/.test(input)) {
+      return new Date(parseInt(input, 10));
+    } else {
+      var s = (input || '').trim();
+      s = s.replace(/\.\d+/, ''); // remove milliseconds
+      s = s.replace(/-/, '/').replace(/-/, '/');
+      s = s.replace(/T/, ' ').replace(/Z/, ' UTC');
+      s = s.replace(/([\+\-]\d\d)\:?(\d\d)/, ' $1$2'); // -04:00 -> -0400
+      return new Date(s);
     }
-    if (iso8601 instanceof Date){
-      return iso8601;
-    }
-    var s = (iso8601 || '').trim();
-    s = s.replace(/\.\d+/, ''); // remove milliseconds
-    s = s.replace(/-/, '/').replace(/-/, '/');
-    s = s.replace(/T/, ' ').replace(/Z/, ' UTC');
-    s = s.replace(/([\+\-]\d\d)\:?(\d\d)/, ' $1$2'); // -04:00 -> -0400
-    return new Date(s);
   };
 
   return service;

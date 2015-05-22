@@ -8,5 +8,5 @@ var app = angular.module('ngApp', [
 app.controller('demoController', function ($scope, nowTime) {
   $scope.pageLoadTime = (new Date()).toISOString();
   $scope.nowTime = nowTime;
-  $scope.nowTimeAsDateObejct = new Date()
+  $scope.nowTimeAsDateObject = new Date()
 });

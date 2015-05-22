@@ -1,6 +1,6 @@
 /**
  * Angular directive/filter/service for formatting date so that it displays how long ago the given time was compared to now.
- * @version v0.1.10 - 2015-04-30
+ * @version v0.1.11 - 2015-05-22
  * @link https://github.com/yaru22/angular-timeago
  * @author Brian Park <yaru22@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -52,6 +52,24 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
     refreshMillis: 60000,
     allowFuture: false,
     strings: {
+      'it_IT': {
+        prefixAgo: null,
+        prefixFromNow: null,
+        suffixAgo: 'fa',
+        suffixFromNow: 'da ora',
+        seconds: 'meno di un minuto',
+        minute: 'circa un minuto',
+        minutes: '%d minuti',
+        hour: 'circa un\' ora',
+        hours: 'circa %d ore',
+        day: 'un giorno',
+        days: '%d giorni',
+        month: 'circa un mese',
+        months: '%d mesi',
+        year: 'circa un anno',
+        years: '%d anni',
+        numbers: []
+      },
       'en_US': {
         prefixAgo: null,
         prefixFromNow: null,
@@ -202,21 +220,23 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
       ].join(separator).trim();
     }
   };
-  service.parse = function (iso8601) {
-    if (angular.isNumber(iso8601)) {
-      return parseInt(iso8601, 10);
+  service.parse = function (input) {
+    if (input instanceof Date) {
+      return input;
+    } else if (angular.isNumber(input)) {
+      return new Date(input);
+    } else if (/^\d+$/.test(input)) {
+      return new Date(parseInt(input, 10));
+    } else {
+      var s = (input || '').trim();
+      s = s.replace(/\.\d+/, '');
+      // remove milliseconds
+      s = s.replace(/-/, '/').replace(/-/, '/');
+      s = s.replace(/T/, ' ').replace(/Z/, ' UTC');
+      s = s.replace(/([\+\-]\d\d)\:?(\d\d)/, ' $1$2');
+      // -04:00 -> -0400
+      return new Date(s);
     }
-    if (iso8601 instanceof Date) {
-      return iso8601;
-    }
-    var s = (iso8601 || '').trim();
-    s = s.replace(/\.\d+/, '');
-    // remove milliseconds
-    s = s.replace(/-/, '/').replace(/-/, '/');
-    s = s.replace(/T/, ' ').replace(/Z/, ' UTC');
-    s = s.replace(/([\+\-]\d\d)\:?(\d\d)/, ' $1$2');
-    // -04:00 -> -0400
-    return new Date(s);
   };
   return service;
 }).filter('timeAgo', [
