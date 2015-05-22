@@ -11,7 +11,7 @@ angular.module('yaru22.angular-timeago', [
 
       // Track the fromTime attribute
       attrs.$observe('fromTime', function (value) {
-        fromTime = timeAgo.parse(parseInt(value));
+        fromTime = timeAgo.parse(value);
       });
 
       // Track changes to time difference
@@ -203,7 +203,7 @@ angular.module('yaru22.angular-timeago', [
   };
 
   service.parse = function (iso8601) {
-    if (angular.isNumber(iso8601)) {
+    if (!angular.isNumber(iso8601)) {
       return parseInt(iso8601, 10);
     }
     if (iso8601 instanceof Date){
