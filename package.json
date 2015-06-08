@@ -45,6 +45,7 @@
     "matchdep": "0.3.0",
     "protractor": "^1.5.0"
   },
+  "main": "src/timeAgo.js",
   "scripts": {
     "test": "grunt test"
   }
