@@ -6,17 +6,18 @@ angular.module('yaru22.angular-timeago', [
 ]).directive('timeAgo', ['timeAgo', 'nowTime', function (timeAgo, nowTime) {
   return {
     scope : {
-      fromTime : '@'
+      fromTime : '@',
+      format : '@'
     },
     restrict: 'EA',
-    link: function(scope, elem, attrs) {
+    link: function(scope, elem) {
       var fromTime = timeAgo.parse(scope.fromTime);
 
       // Track changes to time difference
       scope.$watch(function () {
         return nowTime() - fromTime;
       }, function(value) {
-        angular.element(elem).text(timeAgo.inWords(value, fromTime));
+        angular.element(elem).text(timeAgo.inWords(value, fromTime, scope.format));
       });
     }
   };
@@ -34,7 +35,7 @@ angular.module('yaru22.angular-timeago', [
   return function() {
     return nowTime;
   };
-}]).factory('timeAgo', function () {
+}]).factory('timeAgo', ['$filter', function ($filter) {
   var service = {};
 
   service.settings = {
@@ -190,9 +191,17 @@ angular.module('yaru22.angular-timeago', [
     }
   };
 
-  service.inWords = function (distanceMillis, fromTime) {
+  service.inWords = function (distanceMillis, fromTime, format, timezone) {
 
-    if ((service.settings.fullDateAfterSeconds * 1000) < distanceMillis) {
+    var fullDateAfterSeconds = parseInt(service.settings.fullDateAfterSeconds, 10);
+
+    if (!isNaN(fullDateAfterSeconds) && 
+        ( (distanceMillis >= 0 && (fullDateAfterSeconds * 1000) <= distanceMillis) ||
+          (fullDateAfterSeconds * 1000) >= distanceMillis))
+    {
+      if (format) {
+        return $filter('date')(fromTime, format, timezone);
+      }
       return fromTime;
     }
 
@@ -272,10 +281,10 @@ angular.module('yaru22.angular-timeago', [
   };
 
   return service;
-}).filter('timeAgo', ['nowTime', 'timeAgo', function (nowTime, timeAgo) {
-  return function (value) {
+}]).filter('timeAgo', ['nowTime', 'timeAgo', function (nowTime, timeAgo) {
+  return function (value, format, timezone) {
     var fromTime = timeAgo.parse(value);
     var diff = nowTime() - fromTime;
-    return timeAgo.inWords(diff, fromTime);
+    return timeAgo.inWords(diff, fromTime, format, timezone);
   };
 }]);

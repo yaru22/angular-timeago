@@ -7,7 +7,7 @@ var app = angular.module('ngApp', [
 
 app.controller('demoController', function ($scope, timeAgo, nowTime) {
 
-  // timeAgo.settings.fullDateAfterSeconds = 10;
+  //timeAgo.settings.fullDateAfterSeconds = 60 * 60 * 24;
   //timeAgo.settings.overrideLang = 'es_LA';
 
   $scope.pageLoadTime = (new Date()).toISOString();
