@@ -5,20 +5,18 @@
 angular.module('yaru22.angular-timeago', [
 ]).directive('timeAgo', ['timeAgo', 'nowTime', function (timeAgo, nowTime) {
   return {
+    scope : {
+      fromTime : '@'
+    },
     restrict: 'EA',
     link: function(scope, elem, attrs) {
-      var fromTime;
-
-      // Track the fromTime attribute
-      attrs.$observe('fromTime', function (value) {
-        fromTime = timeAgo.parse(value);
-      });
+      var fromTime = timeAgo.parse(scope.fromTime);
 
       // Track changes to time difference
       scope.$watch(function () {
         return nowTime() - fromTime;
       }, function(value) {
-        angular.element(elem).text(timeAgo.inWords(value));
+        angular.element(elem).text(timeAgo.inWords(value, fromTime));
       });
     }
   };
@@ -42,6 +40,8 @@ angular.module('yaru22.angular-timeago', [
   service.settings = {
     refreshMillis: 60000,
     allowFuture: false,
+    overrideLang : null,
+    fullDateAfterSeconds : null,
     strings: {
       'it_IT': {
         prefixAgo: null,
@@ -190,12 +190,28 @@ angular.module('yaru22.angular-timeago', [
     }
   };
 
-  service.inWords = function (distanceMillis) {
-    var lang = document.documentElement.lang;
-    var $l = service.settings.strings[lang];
-    if (typeof $l === 'undefined') {
-      $l = service.settings.strings['en_US'];
+  service.inWords = function (distanceMillis, fromTime) {
+
+    if ((service.settings.fullDateAfterSeconds * 1000) < distanceMillis) {
+      return fromTime;
     }
+
+    var overrideLang = service.settings.overrideLang;
+    var documentLang = document.documentElement.lang;
+    var sstrings = service.settings.strings;
+    var lang, $l;
+
+    if (typeof sstrings[overrideLang] !== 'undefined') {
+      lang = overrideLang;
+      $l = sstrings[overrideLang];
+    } else if (typeof sstrings[documentLang] !== 'undefined') {
+      lang = documentLang;
+      $l = sstrings[documentLang];
+    } else {
+      lang = 'en_US';
+      $l = sstrings[lang];
+    }
+
     var prefix = $l.prefixAgo;
     var suffix = $l.suffixAgo;
     if (service.settings.allowFuture) {
@@ -260,6 +276,6 @@ angular.module('yaru22.angular-timeago', [
   return function (value) {
     var fromTime = timeAgo.parse(value);
     var diff = nowTime() - fromTime;
-    return timeAgo.inWords(diff);
+    return timeAgo.inWords(diff, fromTime);
   };
 }]);

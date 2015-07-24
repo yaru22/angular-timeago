@@ -1,6 +1,6 @@
 /**
  * Angular directive/filter/service for formatting date so that it displays how long ago the given time was compared to now.
- * @version v0.1.11 - 2015-05-22
+ * @version v0.1.12 - 2015-07-24
  * @link https://github.com/yaru22/angular-timeago
  * @author Brian Park <yaru22@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -12,18 +12,15 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
   'nowTime',
   function (timeAgo, nowTime) {
     return {
+      scope: { fromTime: '@' },
       restrict: 'EA',
       link: function (scope, elem, attrs) {
-        var fromTime;
-        // Track the fromTime attribute
-        attrs.$observe('fromTime', function (value) {
-          fromTime = timeAgo.parse(value);
-        });
+        var fromTime = timeAgo.parse(scope.fromTime);
         // Track changes to time difference
         scope.$watch(function () {
           return nowTime() - fromTime;
         }, function (value) {
-          angular.element(elem).text(timeAgo.inWords(value));
+          angular.element(elem).text(timeAgo.inWords(value, fromTime));
         });
       }
     };
@@ -51,6 +48,8 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
   service.settings = {
     refreshMillis: 60000,
     allowFuture: false,
+    overrideLang: null,
+    fullDateAfterSeconds: null,
     strings: {
       'it_IT': {
         prefixAgo: null,
@@ -177,14 +176,44 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
         year: 'un a\xf1o',
         years: '%d a\xf1os',
         numbers: []
+      },
+      'nl_NL': {
+        prefixAgo: null,
+        prefixFromNow: 'over',
+        suffixAgo: 'geleden',
+        suffixFromNow: 'vanaf nu',
+        seconds: 'een paar seconden',
+        minute: 'ongeveer een minuut',
+        minutes: '%d minuten',
+        hour: 'een uur',
+        hours: '%d uur',
+        day: 'een dag',
+        days: '%d dagen',
+        month: 'een maand',
+        months: '%d maanden',
+        year: 'een jaar',
+        years: '%d jaar',
+        numbers: []
       }
     }
   };
-  service.inWords = function (distanceMillis) {
-    var lang = document.documentElement.lang;
-    var $l = service.settings.strings[lang];
-    if (typeof $l === 'undefined') {
-      $l = service.settings.strings['en_US'];
+  service.inWords = function (distanceMillis, fromTime) {
+    if (service.settings.fullDateAfterSeconds * 1000 < distanceMillis) {
+      return fromTime;
+    }
+    var overrideLang = service.settings.overrideLang;
+    var documentLang = document.documentElement.lang;
+    var sstrings = service.settings.strings;
+    var lang, $l;
+    if (typeof sstrings[overrideLang] !== 'undefined') {
+      lang = overrideLang;
+      $l = sstrings[overrideLang];
+    } else if (typeof sstrings[documentLang] !== 'undefined') {
+      lang = documentLang;
+      $l = sstrings[documentLang];
+    } else {
+      lang = 'en_US';
+      $l = sstrings[lang];
     }
     var prefix = $l.prefixAgo;
     var suffix = $l.suffixAgo;
@@ -246,7 +275,7 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
     return function (value) {
       var fromTime = timeAgo.parse(value);
       var diff = nowTime() - fromTime;
-      return timeAgo.inWords(diff);
+      return timeAgo.inWords(diff, fromTime);
     };
   }
 ]);
