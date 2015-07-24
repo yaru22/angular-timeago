@@ -2,7 +2,7 @@
 
 describe('basic frontend testing', function () {
 
-  var deltaMs = 200;
+  var deltaMs = 300;
 
   beforeEach(function () {
     browser.get('/');
