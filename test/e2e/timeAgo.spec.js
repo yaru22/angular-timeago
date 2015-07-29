@@ -2,7 +2,7 @@
 
 describe('basic frontend testing', function () {
 
-  var deltaMs = 200;
+  var deltaMs = 300;
 
   beforeEach(function () {
     browser.get('/');
@@ -10,6 +10,10 @@ describe('basic frontend testing', function () {
 
   it('time ago directive', function () {
     expect(element(by.css('.directive-example')).getText()).toMatch(/^(Directive Example\nYou opened this demo page )(less than|about)( a minute ago)$/);
+  });
+
+  it('time ago filter', function () {
+    expect(element(by.css('.filter-example')).getText()).toMatch(/^(Filter Example\nYou opened this demo page )(less than|about)( a minute ago)$/);
   });
 
   it('loading time', function () {
@@ -25,7 +29,7 @@ describe('basic frontend testing', function () {
     browser.sleep(1000);
     element(by.css('.current-time')).getText().then(function (pageNowTimeText) {
       var pageNowMs = parseInt(pageNowTimeText.replace('Current time: ', ''));
-      expect(Math.abs(pageNowMs - Date.now()) < deltaMs).toBe(true)
+      expect(Math.abs(pageNowMs - Date.now()) < deltaMs).toBe(true);
     })
   });
 
