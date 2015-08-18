@@ -195,12 +195,13 @@ angular.module('yaru22.angular-timeago', [
 
     var fullDateAfterSeconds = parseInt(service.settings.fullDateAfterSeconds, 10);
 
-    if (!isNaN(fullDateAfterSeconds) && 
-        ( (distanceMillis >= 0 && (fullDateAfterSeconds * 1000) <= distanceMillis) ||
-          (fullDateAfterSeconds * 1000) >= distanceMillis))
-    {
-      if (format) {
-        return $filter('date')(fromTime, format, timezone);
+    if (!isNaN(fullDateAfterSeconds)) {
+      var fullDateAfterMillis = fullDateAfterSeconds * 1000;
+      if ((distanceMillis >= 0 && fullDateAfterMillis <= distanceMillis) ||
+          (distanceMillis < 0 && fullDateAfterMillis >= distanceMillis)) {
+        if (format) {
+          return $filter('date')(fromTime, format, timezone);
+        }
       }
       return fromTime;
     }
