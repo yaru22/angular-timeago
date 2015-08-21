@@ -82,9 +82,9 @@ angular.module('yaru22.angular-timeago', [
       },
       'de_DE': {
         prefixAgo: 'vor',
-        prefixFromNow: null,
+        prefixFromNow: 'in',
         suffixAgo: null,
-        suffixFromNow: 'from now',
+        suffixFromNow: null,
         seconds: 'weniger als einer Minute',
         minute: 'ca. einer Minute',
         minutes: '%d Minuten',
