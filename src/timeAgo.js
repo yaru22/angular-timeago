@@ -202,8 +202,8 @@ angular.module('yaru22.angular-timeago', [
         if (format) {
           return $filter('date')(fromTime, format, timezone);
         }
+        return fromTime;
       }
-      return fromTime;
     }
 
     var overrideLang = service.settings.overrideLang;
