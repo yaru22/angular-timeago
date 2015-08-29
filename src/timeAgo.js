@@ -154,7 +154,7 @@ angular.module('yaru22.angular-timeago', [
       },
       'fr_FR': {
         prefixAgo: 'il y a',
-        prefixFromNow: 'en',
+        prefixFromNow: 'dans',
         suffixAgo: null,
         suffixFromNow: null,
         seconds: 'moins d\'une minute',
