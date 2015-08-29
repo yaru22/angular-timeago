@@ -82,7 +82,7 @@ This configures `timeAgo` to use it's own filters (`about a minute ago`, `about 
 
 ###<a name="lang"/>Language support
 angular-timeago currently supports the following languages:  
-`en_US`, `de_DE`, `he_IL`, `pt_BR`, `it_IT`, `fr_FR`, `es_LA`, `nl_NL`  
+`en_US`, `de_DE`, `he_IL`, `pt_BR`, `it_IT`, `fr_FR`, `es_LA`, `nl_NL` and `ca_ES`.
 If you want more languages: feel free to contribute!
 The language is determined by the string in `document.documentElement.lang` which you can set in your HTML markup:
 ```
