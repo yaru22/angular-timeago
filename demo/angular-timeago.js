@@ -1,6 +1,6 @@
 /**
  * Angular directive/filter/service for formatting date so that it displays how long ago the given time was compared to now.
- * @version v0.2.3 - 2015-08-26
+ * @version v0.2.4 - 2015-08-30
  * @link https://github.com/yaru22/angular-timeago
  * @author Brian Park <yaru22@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -146,11 +146,29 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
           years: '%d anos',
           numbers: []
         },
+        'ca_ES': {
+          prefixAgo: 'fa',
+          prefixFromNow: 'd\'aqu\xed',
+          suffixAgo: null,
+          suffixFromNow: null,
+          seconds: 'menys d\'un minut',
+          minute: 'prop d\'un minut',
+          minutes: '%d minuts',
+          hour: 'prop d\'una hora',
+          hours: 'prop de %d hores',
+          day: 'un dia',
+          days: '%d dies',
+          month: 'prop d\'un mes',
+          months: '%d mesos',
+          year: 'prop d\'un any',
+          years: '%d anys',
+          numbers: []
+        },
         'fr_FR': {
           prefixAgo: 'il y a',
-          prefixFromNow: null,
+          prefixFromNow: 'dans',
           suffixAgo: null,
-          suffixFromNow: 'from now',
+          suffixFromNow: null,
           seconds: 'moins d\'une minute',
           minute: 'environ une minute',
           minutes: '%d minutes',
@@ -166,16 +184,16 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
         },
         'es_LA': {
           prefixAgo: 'hace',
-          prefixFromNow: null,
+          prefixFromNow: 'en',
           suffixAgo: null,
-          suffixFromNow: 'apartir de ahora',
+          suffixFromNow: null,
           seconds: 'menos de un minuto',
           minute: 'un minuto',
           minutes: '%d minutos',
           hour: 'una hora',
           hours: '%d horas',
-          day: 'un dia',
-          days: '%d dias',
+          day: 'un d\xeda',
+          days: '%d d\xedas',
           month: 'un mes',
           months: '%d meses',
           year: 'un a\xf1o',
