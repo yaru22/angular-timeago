@@ -21,21 +21,19 @@ angular.module('yaru22.angular-timeago', [
       });
     }
   };
-}]).factory('nowTime', ['$window', '$rootScope', function ($window, $rootScope) {
-  var nowTime = Date.now();
-  var updateTime = function() {
-    $window.setTimeout(function() {
-      $rootScope.$apply(function(){
-        nowTime = Date.now();
-        updateTime();
-      });
-    }, 1000);
-  };
+}]).factory('nowTime', function ($timeout) {
+  var nowTime;
+
+  function updateTime() {
+    nowTime = Date.now();
+    $timeout(updateTime, 1000);
+  }
   updateTime();
-  return function() {
+
+  return function () {
     return nowTime;
   };
-}]).factory('timeAgo', ['$filter', function ($filter) {
+}).factory('timeAgo', ['$filter', function ($filter) {
   var service = {};
 
   service.settings = {
