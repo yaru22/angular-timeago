@@ -233,6 +233,24 @@ angular.module('yaru22.angular-timeago', [
           , '八十一', '八十二', '八十三', '八十四', '八十五', '八十六', '八十七', '八十八', '八十九', '九十'
           , '九十一', '九十二', '九十三', '九十四', '九十五', '九十六', '九十七', '九十八', '九十九', '一百'
           ]
+      },
+      'sv_SE': {
+        prefixAgo: null,
+        prefixFromNow: 'om',
+        suffixAgo: 'sen',
+        suffixFromNow: null,
+        seconds: 'mindre än en minut',
+        minute: 'cirka en minut',
+        minutes: '%d minuter',
+        hour: 'cirka en timme',
+        hours: 'cirka %d timmar',
+        day: 'en dag',
+        days: '%d dagar',
+        month: 'cirka en månad',
+        months: '%d månader',
+        year: 'cirka ett år',
+        years: '%d år',
+        numbers: []
       }
     }
   };
