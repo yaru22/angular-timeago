@@ -95,7 +95,7 @@ window.document.documentElement.lang = 'en_US';
 Or configure the service to override the default language:
 ```javascript  
 app.controller('appCtrl', function (timeAgo) {
-  timeAgo.settings.overrideLanguage = 'es_LA';
+  timeAgo.settings.overrideLang = 'es_LA';
 });
 ```
 You can also add additional or alter existing languages at runtime by extending the service:
