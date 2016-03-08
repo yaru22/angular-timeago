@@ -115,9 +115,7 @@ For more details refer to the [source code](https://github.com/yaru22/angular-ti
 In order to run the e2e tests you might need to install a Selenium server via:
 
 ```
-./node_modules/grunt-protractor-runner/scripts/webdriver-manager-update```
-
-And then use grunt to run all tests (unit and e2e):
-
+./node_modules/grunt-protractor-runner/scripts/webdriver-manager-update
 ```
 
+And then use grunt to run all tests (unit and e2e):
