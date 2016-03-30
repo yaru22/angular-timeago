@@ -21,7 +21,7 @@ angular.module('yaru22.angular-timeago', [
       });
     }
   };
-}]).factory('nowTime', function ($timeout) {
+}]).factory('nowTime', ['$timeout', function ($timeout) {
   var nowTime;
 
   function updateTime() {
@@ -33,7 +33,7 @@ angular.module('yaru22.angular-timeago', [
   return function () {
     return nowTime;
   };
-}).factory('timeAgo', ['$filter', function ($filter) {
+}]).factory('timeAgo', ['$filter', function ($filter) {
   var service = {};
 
   service.settings = {
