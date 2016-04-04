@@ -1,6 +1,6 @@
 /**
  * Angular directive/filter/service for formatting date so that it displays how long ago the given time was compared to now.
- * @version v0.2.5 - 2015-10-23
+ * @version v0.2.6 - 2016-04-04
  * @link https://github.com/yaru22/angular-timeago
  * @author Brian Park <yaru22@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -29,18 +29,13 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
     };
   }
 ]).factory('nowTime', [
-  '$window',
-  '$rootScope',
-  function ($window, $rootScope) {
-    var nowTime = Date.now();
-    var updateTime = function () {
-      $window.setTimeout(function () {
-        $rootScope.$apply(function () {
-          nowTime = Date.now();
-          updateTime();
-        });
-      }, 1000);
-    };
+  '$timeout',
+  function ($timeout) {
+    var nowTime;
+    function updateTime() {
+      nowTime = Date.now();
+      $timeout(updateTime, 1000);
+    }
     updateTime();
     return function () {
       return nowTime;
@@ -338,6 +333,24 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
             '\u4e5d\u5341\u4e5d',
             '\u4e00\u767e'
           ]
+        },
+        'sv_SE': {
+          prefixAgo: null,
+          prefixFromNow: 'om',
+          suffixAgo: 'sen',
+          suffixFromNow: null,
+          seconds: 'mindre \xe4n en minut',
+          minute: 'cirka en minut',
+          minutes: '%d minuter',
+          hour: 'cirka en timme',
+          hours: 'cirka %d timmar',
+          day: 'en dag',
+          days: '%d dagar',
+          month: 'cirka en m\xe5nad',
+          months: '%d m\xe5nader',
+          year: 'cirka ett \xe5r',
+          years: '%d \xe5r',
+          numbers: []
         }
       }
     };
