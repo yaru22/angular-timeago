@@ -21,14 +21,14 @@ angular.module('yaru22.angular-timeago', [
       });
     }
   };
-}]).factory('nowTime', ['$timeout', function ($timeout) {
+}]).factory('nowTime', ['$interval', function ($interval) {
   var nowTime;
 
   function updateTime() {
     nowTime = Date.now();
-    $timeout(updateTime, 1000);
   }
   updateTime();
+  $interval(updateTime, 1000);
 
   return function () {
     return nowTime;
