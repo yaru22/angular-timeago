@@ -43,6 +43,7 @@
     "karma-mocha": "0.1",
     "karma-ng-html2js-preprocessor": "0.1",
     "matchdep": "0.3.0",
+    "mocha": "^2.4.5",
     "protractor": "^1.5.0"
   },
   "main": "src/timeAgo.js",
