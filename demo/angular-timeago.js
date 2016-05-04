@@ -1,6 +1,6 @@
 /**
  * Angular directive/filter/service for formatting date so that it displays how long ago the given time was compared to now.
- * @version v0.2.7 - 2016-04-27
+ * @version v0.2.7 - 2016-04-28
  * @link https://github.com/yaru22/angular-timeago
  * @author Brian Park <yaru22@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -350,6 +350,24 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
           months: '%d m\xe5nader',
           year: 'cirka ett \xe5r',
           years: '%d \xe5r',
+          numbers: []
+        },
+        'hu_HU': {
+          prefixAgo: null,
+          prefixFromNow: null,
+          suffixAgo: null,
+          suffixFromNow: null,
+          seconds: 'kevesebb mint egy perce',
+          minute: 'k\xf6r\xfclbel\xfcl egy perce',
+          minutes: '%d perce',
+          hour: 'k\xf6r\xfclbel\xfcl egy \xf3r\xe1ja',
+          hours: 'k\xf6r\xfclbel\xfcl %d \xf3r\xe1ja',
+          day: 'egy napja',
+          days: '%d napja',
+          month: 'k\xf6r\xfclbel\xfcl egy h\xf3napja',
+          months: '%d h\xf3napja',
+          year: 'k\xf6r\xfclbel\xfcl egy \xe9ve',
+          years: '%d \xe9ve',
           numbers: []
         }
       }
