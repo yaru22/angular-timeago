@@ -252,6 +252,25 @@ angular.module('yaru22.angular-timeago', [
           '九十一', '九十二', '九十三', '九十四', '九十五', '九十六', '九十七', '九十八', '九十九', '一百',
         ]
       },
+      'zh_CN': {
+        wordSeparator: '',
+        prefixAgo: null,
+        prefixFromNow: null,
+        suffixAgo: '前',
+        suffixFromNow: '后',
+        seconds: '1分钟',
+        minute: '1分钟',
+        minutes: '%d分钟',
+        hour: '1小时',
+        hours: '%d小时',
+        day: '1天',
+        days: '%d天',
+        month: '1个月',
+        months: '%d个月',
+        year: '1年',
+        years: '%d年',
+        numbers: []
+      },
       'sv_SE': {
         prefixAgo: null,
         prefixFromNow: 'om',
