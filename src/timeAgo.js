@@ -21,14 +21,14 @@ angular.module('yaru22.angular-timeago', [
       });
     }
   };
-}]).factory('nowTime', ['$interval', function ($interval) {
+}]).factory('nowTime', ['$interval', 'timeAgo', function ($interval, timeAgo) {
   var nowTime;
 
   function updateTime() {
     nowTime = Date.now();
   }
   updateTime();
-  $interval(updateTime, 1000);
+  $interval(updateTime, timeAgo.settings.refreshMillis);
 
   return function () {
     return nowTime;
@@ -37,7 +37,7 @@ angular.module('yaru22.angular-timeago', [
   var service = {};
 
   service.settings = {
-    refreshMillis: 60000,
+    refreshMillis: 1000,
     allowFuture: false,
     overrideLang : null,
     fullDateAfterSeconds : null,
