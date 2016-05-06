@@ -80,6 +80,14 @@ timeAgo.settings.fullDateAfterSeconds = oneDay;
 ```
 This configures `timeAgo` to use it's own filters (`about a minute ago`, `about 4 hours ago`, etc) until `fullDateAfterSeconds` seconds have passed, and then it will display the date as normal.  This is useful when combined with a [date format filter](#filter-format).
 
+####<a name="config-refreshMillis"/>`refreshMillis`
+Default: `1000`
+```javascript
+timeAgo.settings.refreshMillis = 60000;
+```
+This configures `timeAgo` to use a different refresh interval (in milliseconds).
+Note that this setting needs to be set early in the `run` function before the `nowTime` factory is used by a directive/filter/controller.
+
 ###<a name="lang"/>Language support
 angular-timeago currently supports the following languages:  
 `en_US`, `de_DE`, `he_IL`, `pt_BR`, `it_IT`, `fr_FR`, `es_LA`, `nl_NL`, `ca_ES` and `sv_SE`.
