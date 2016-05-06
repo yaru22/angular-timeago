@@ -1,6 +1,6 @@
 /**
  * Angular directive/filter/service for formatting date so that it displays how long ago the given time was compared to now.
- * @version v0.2.8 - 2016-05-04
+ * @version v0.2.9 - 2016-05-06
  * @link https://github.com/yaru22/angular-timeago
  * @author Brian Park <yaru22@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -30,13 +30,14 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
   }
 ]).factory('nowTime', [
   '$interval',
-  function ($interval) {
+  'timeAgo',
+  function ($interval, timeAgo) {
     var nowTime;
     function updateTime() {
       nowTime = Date.now();
     }
     updateTime();
-    $interval(updateTime, 1000);
+    $interval(updateTime, timeAgo.settings.refreshMillis);
     return function () {
       return nowTime;
     };
@@ -46,7 +47,7 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
   function ($filter) {
     var service = {};
     service.settings = {
-      refreshMillis: 60000,
+      refreshMillis: 1000,
       allowFuture: false,
       overrideLang: null,
       fullDateAfterSeconds: null,
@@ -351,6 +352,25 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
             '\u4e5d\u5341\u4e5d',
             '\u4e00\u767e'
           ]
+        },
+        'zh_CN': {
+          wordSeparator: '',
+          prefixAgo: null,
+          prefixFromNow: null,
+          suffixAgo: '\u524d',
+          suffixFromNow: '\u540e',
+          seconds: '1\u5206\u949f',
+          minute: '1\u5206\u949f',
+          minutes: '%d\u5206\u949f',
+          hour: '1\u5c0f\u65f6',
+          hours: '%d\u5c0f\u65f6',
+          day: '1\u5929',
+          days: '%d\u5929',
+          month: '1\u4e2a\u6708',
+          months: '%d\u4e2a\u6708',
+          year: '1\u5e74',
+          years: '%d\u5e74',
+          numbers: []
         },
         'sv_SE': {
           prefixAgo: null,
