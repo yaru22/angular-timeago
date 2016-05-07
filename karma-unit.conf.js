@@ -26,11 +26,10 @@ module.exports = function(config) {
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
 
+      'src/module.js',
       'src/**/*.js',
-      // 'template/cache.js',
 
-      'test/unit/**/*.js',
-      // 'test/unit/**/*.tmpl'
+      'test/unit/**/*.js'
     ],
 
 

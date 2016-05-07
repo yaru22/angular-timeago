@@ -37,7 +37,7 @@ module.exports = function (grunt) {
         banner: '<%= meta.banner %>'
       },
       js: {
-        src: ['<%= dirs.src %>/*.js'],
+        src: ['<%= dirs.src %>/module.js', '<%= dirs.src %>/**/*.js'],
         dest: '<%= dirs.dist %>/<%= pkg.name %>.js'
       },
       css: {
@@ -160,7 +160,7 @@ module.exports = function (grunt) {
     watch: {  // grunt-contrib-watch
       src: {
         files: [
-          '<%= dirs.src %>/*.js',
+          '<%= dirs.src %>/**/*.js',
           '<%= dirs.src %>/*.css',
         ],
         tasks: ['test'],
