@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('yaru22.angular-timeago', [
-]).directive('timeAgo', ['timeAgo', 'nowTime', function (timeAgo, nowTime) {
+]).directive('timeAgo', function (timeAgo, nowTime) {
   return {
     scope : {
       fromTime : '@',
@@ -21,7 +21,7 @@ angular.module('yaru22.angular-timeago', [
       });
     }
   };
-}]).factory('nowTime', ['$interval', 'timeAgo', 'timeAgoSettings', function ($interval, timeAgo, timeAgoSettings) {
+}).factory('nowTime', function ($interval, timeAgo, timeAgoSettings) {
   var nowTime;
 
   function updateTime() {
@@ -33,7 +33,7 @@ angular.module('yaru22.angular-timeago', [
   return function () {
     return nowTime;
   };
-}]).constant('timeAgoSettings', {
+}).constant('timeAgoSettings', {
   refreshMillis: 1000,
   allowFuture: false,
   overrideLang : null,
@@ -305,7 +305,7 @@ angular.module('yaru22.angular-timeago', [
       numbers: []
     }
   }
-}).factory('timeAgo', ['$filter', 'timeAgoSettings', function ($filter, timeAgoSettings) {
+}).factory('timeAgo', function ($filter, timeAgoSettings) {
   var service = {};
 
   service.inWords = function (distanceMillis, fromTime, format, timezone) {
@@ -399,10 +399,10 @@ angular.module('yaru22.angular-timeago', [
   };
 
   return service;
-}]).filter('timeAgo', ['nowTime', 'timeAgo', function (nowTime, timeAgo) {
+}).filter('timeAgo', function (nowTime, timeAgo) {
   return function (value, format, timezone) {
     var fromTime = timeAgo.parse(value);
     var diff = nowTime() - fromTime;
     return timeAgo.inWords(diff, fromTime, format, timezone);
   };
-}]);
+});
