@@ -6,15 +6,17 @@ module.exports = function (grunt) {
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+  var dirs = {
+    src: 'src',
+    dist: 'dist',
+    demo: 'demo',
+  };
+
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    dirs: {
-      src: 'src',
-      dist: 'dist',
-      demo: 'demo',
-    },
+    dirs: dirs,
 
     meta: {
       banner: '/**\n' +
@@ -39,27 +41,30 @@ module.exports = function (grunt) {
       js: {
         src: ['<%= dirs.src %>/module.js', '<%= dirs.src %>/**/*.js'],
         dest: '<%= dirs.dist %>/<%= pkg.name %>.js'
-      },
-      css: {
-        src: ['<%= dirs.src %>/*.css'],
-        dest: '<%= dirs.dist %>/<%= pkg.name %>.css'
       }
     },
 
     connect: {  // grunt-contrib-connect
+      options: {
+        port: 9999,
+        hostname: '0.0.0.0',
+        keepalive: true,
+		middleware : function(connect) {
+			var middlewares = [];
+			var serveStatic = require('serve-static');
+			middlewares.push(serveStatic(dirs.demo));
+			middlewares.push(connect().use('/bower_components', serveStatic('./bower_components')));
+			middlewares.push(connect().use('/dist', serveStatic(dirs.dist)));
+			return middlewares;
+		}
+      },
       dev: {
         options: {
-          port: 9999,
-          hostname: '0.0.0.0',
-          base: '<%= dirs.demo %>',
           keepalive: true
         }
       },
       e2e: {
         options: {
-          port: 9999,
-          hostname: '0.0.0.0',
-          base: '<%= dirs.demo %>',
           keepalive: false
         }
       }
@@ -71,20 +76,11 @@ module.exports = function (grunt) {
           expand: true,
           flatten: true,
           src: [
-            '<%= dirs.dist %>/<%= pkg.name %>.js',
-            '<%= dirs.dist %>/<%= pkg.name %>.css'
+            '<%= dirs.dist %>/<%= pkg.name %>.js'
           ],
           dest: '<%= dirs.demo %>/',
           filter: 'isFile'
         }]
-      }
-    },
-
-    cssmin: {  // grunt-contrib-cssmin
-      combine: {
-        files: {
-          '<%= dirs.dist %>/<%= pkg.name %>.min.css': ['<%= dirs.dist %>/<%= pkg.name %>.css']
-        }
       }
     },
 
@@ -106,7 +102,7 @@ module.exports = function (grunt) {
       }
     },
 
-    ngmin: {  // grunt-ngmin
+    ngAnnotate: {  // grunt-ng-annotate
       dist: {
         files: [{
           expand: true,
@@ -142,7 +138,7 @@ module.exports = function (grunt) {
 
     release: {  // grunt-release
       options: {
-        file: 'bower.json',
+        additionalFiles: ['bower.json'],
         npm: false
       }
     },
@@ -160,8 +156,7 @@ module.exports = function (grunt) {
     watch: {  // grunt-contrib-watch
       src: {
         files: [
-          '<%= dirs.src %>/**/*.js',
-          '<%= dirs.src %>/*.css',
+          '<%= dirs.src %>/*.js'
         ],
         tasks: ['test'],
       }
@@ -194,7 +189,6 @@ module.exports = function (grunt) {
     'concat',
     'ngmin',
     'uglify',
-    'cssmin',
     'copy'
   ]);
 
