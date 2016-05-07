@@ -160,7 +160,14 @@ module.exports = function (grunt) {
         ],
         tasks: ['test'],
       }
-    }
+    },
+
+	jsbeautifier : {
+		options: {
+			config: '.jsbeautifyrc'
+		},
+		dev : [ '<%= dirs.src %>/**/*.js' ]
+	}
   });
 
 
@@ -186,6 +193,7 @@ module.exports = function (grunt) {
   // Build task.
   grunt.registerTask('build', [
     // 'test',
+    'jsbeautifier',
     'concat',
     'ngmin',
     'uglify',

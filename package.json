@@ -30,6 +30,7 @@
     "grunt-contrib-jshint": "1.0.0",
     "grunt-contrib-uglify": "1.0.1",
     "grunt-contrib-watch": "1.0.0",
+    "grunt-jsbeautifier": "0.2.12",
     "grunt-karma": "1.0.0",
     "grunt-ng-annotate": "2.0.2",
     "grunt-open": "0.2.3",
