@@ -4,15 +4,16 @@
 var expect = chai.expect;
 
 describe('timeAgo', function () {
-  var elm, scope, filter, ngDateFilter, timeAgo;
+  var elm, scope, filter, ngDateFilter, timeAgo, timeAgoSettings;
 
   // load the code
   beforeEach(module('yaru22.angular-timeago'));
 
-  beforeEach(inject(function ($rootScope, $compile, timeAgoFilter, dateFilter, _timeAgo_) {
+  beforeEach(inject(function ($rootScope, $compile, timeAgoFilter, dateFilter, _timeAgo_, _timeAgoSettings_) {
     filter = timeAgoFilter;
     ngDateFilter = dateFilter;
     timeAgo = _timeAgo_;
+    timeAgoSettings = _timeAgoSettings_;
   }));
 
   it('test filter', function () {
@@ -27,8 +28,8 @@ describe('timeAgo', function () {
   });
 
   it('settings.overrideLang works', function () {
-    timeAgo.settings.overrideLang = 'es_LA';
-    var strs = timeAgo.settings.strings['es_LA'];
+    timeAgoSettings.overrideLang = 'es_LA';
+    var strs = timeAgoSettings.strings['es_LA'];
     var nowDate = new Date();
 
     expect(filter(nowDate)).to.equal([strs.prefixAgo, strs.seconds, strs.suffixAgo].join(' ').trim());
@@ -36,7 +37,7 @@ describe('timeAgo', function () {
 
   it('settings.fullDateAfterSeconds works', function() {
     // force it to display the full date always
-    timeAgo.settings.fullDateAfterSeconds = 0;
+    timeAgoSettings.fullDateAfterSeconds = 0;
     var nowDate = new Date();
 
     var ngDateString = ngDateFilter(nowDate, 'yyyy-MM-dd HH:mm');

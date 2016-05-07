@@ -21,16 +21,16 @@ module.exports = function(config) {
     files: [
       'bower_components/chai/chai.js',
       // needed for elem.find() lookup by other than tag name
-      'bower_components/jquery/jquery.js',
+      'bower_components/jquery/dist/jquery.js',
 
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
 
       'src/**/*.js',
-      'template/cache.js',
+      // 'template/cache.js',
 
       'test/unit/**/*.js',
-      'test/unit/**/*.tmpl'
+      // 'test/unit/**/*.tmpl'
     ],
 
 
