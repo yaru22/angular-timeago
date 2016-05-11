@@ -118,6 +118,25 @@ For more details refer to the [source code](https://github.com/yaru22/angular-ti
   
 
 
+## Add a new language
+
+To add a new language if the one you want is missing :
+
+- create a new file into the languages folder : src/languages/time-ago-language-xx_XX.js
+- in that file, set your language definition as this :
+
+```js
+'use strict';
+
+angular.module('yaru22.angular-timeago').config(function(timeAgoSettings) {
+  timeAgoSettings.strings['xx_XX'] = {
+    ... TODO =) ...
+  }
+});
+```
+
+
+
 ## Testing
 
 In order to run the e2e tests you might need to install a Selenium server via:
