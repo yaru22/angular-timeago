@@ -152,7 +152,7 @@ module.exports = function (grunt) {
       options: {
         config: '.jsbeautifyrc'
       },
-      dev : [ '<%= dirs.src %>/**/*.js' ]
+      dev: ['Gruntfile.js', '<%= dirs.src %>/**/*.js']
     }
   });
 
