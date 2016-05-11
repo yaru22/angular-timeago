@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('yaru22.angular-timeago').factory('nowTime', function ($interval, timeAgo, timeAgoSettings) {
+angular.module('yaru22.angular-timeago').factory('nowTime', function($interval, timeAgo, timeAgoSettings) {
   var nowTime;
 
   function updateTime() {
@@ -9,7 +9,7 @@ angular.module('yaru22.angular-timeago').factory('nowTime', function ($interval,
   updateTime();
   $interval(updateTime, timeAgoSettings.refreshMillis);
 
-  return function () {
+  return function() {
     return nowTime;
   };
 });

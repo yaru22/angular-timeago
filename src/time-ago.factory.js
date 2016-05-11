@@ -1,16 +1,16 @@
 'use strict';
 
-angular.module('yaru22.angular-timeago').factory('timeAgo', function ($filter, timeAgoSettings) {
+angular.module('yaru22.angular-timeago').factory('timeAgo', function($filter, timeAgoSettings) {
   var service = {};
 
-  service.inWords = function (distanceMillis, fromTime, format, timezone) {
+  service.inWords = function(distanceMillis, fromTime, format, timezone) {
 
     var fullDateAfterSeconds = parseInt(timeAgoSettings.fullDateAfterSeconds, 10);
 
     if (!isNaN(fullDateAfterSeconds)) {
       var fullDateAfterMillis = fullDateAfterSeconds * 1000;
       if ((distanceMillis >= 0 && fullDateAfterMillis <= distanceMillis) ||
-          (distanceMillis < 0 && fullDateAfterMillis >= distanceMillis)) {
+        (distanceMillis < 0 && fullDateAfterMillis >= distanceMillis)) {
         if (format) {
           return $filter('date')(fromTime, format, timezone);
         }
@@ -51,33 +51,33 @@ angular.module('yaru22.angular-timeago').factory('timeAgo', function ($filter, t
 
     function substitute(stringOrFunction, number) {
       var string = angular.isFunction(stringOrFunction) ?
-      stringOrFunction(number, distanceMillis) : stringOrFunction;
+        stringOrFunction(number, distanceMillis) : stringOrFunction;
       var value = ($l.numbers && $l.numbers[number]) || number;
       return string.replace(/%d/i, value);
     }
 
     var words = seconds < 45 && substitute($l.seconds, Math.round(seconds)) ||
-        seconds < 90 && substitute($l.minute, 1) ||
-        minutes < 45 && substitute($l.minutes, Math.round(minutes)) ||
-        minutes < 90 && substitute($l.hour, 1) ||
-        hours < 24 && substitute($l.hours, Math.round(hours)) ||
-        hours < 42 && substitute($l.day, 1) ||
-        days < 30 && substitute($l.days, Math.round(days)) ||
-        days < 45 && substitute($l.month, 1) ||
-        days < 365 && substitute($l.months, Math.round(days / 30)) ||
-        years < 1.5 && substitute($l.year, 1) ||
-        substitute($l.years, Math.round(years));
+      seconds < 90 && substitute($l.minute, 1) ||
+      minutes < 45 && substitute($l.minutes, Math.round(minutes)) ||
+      minutes < 90 && substitute($l.hour, 1) ||
+      hours < 24 && substitute($l.hours, Math.round(hours)) ||
+      hours < 42 && substitute($l.day, 1) ||
+      days < 30 && substitute($l.days, Math.round(days)) ||
+      days < 45 && substitute($l.month, 1) ||
+      days < 365 && substitute($l.months, Math.round(days / 30)) ||
+      years < 1.5 && substitute($l.year, 1) ||
+      substitute($l.years, Math.round(years));
 
-    var separator = $l.wordSeparator === undefined ?  ' ' : $l.wordSeparator;
-    if(lang === 'he_IL'){
+    var separator = $l.wordSeparator === undefined ? ' ' : $l.wordSeparator;
+    if (lang === 'he_IL') {
       return [prefix, suffix, words].join(separator).trim();
     } else {
       return [prefix, words, suffix].join(separator).trim();
     }
   };
 
-  service.parse = function (input) {
-    if (input instanceof Date){
+  service.parse = function(input) {
+    if (input instanceof Date) {
       return input;
     } else if (angular.isNumber(input)) {
       return new Date(input);
