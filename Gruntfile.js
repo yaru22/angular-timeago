@@ -2,7 +2,7 @@
 
 'use strict';
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
@@ -20,12 +20,12 @@ module.exports = function (grunt) {
 
     meta: {
       banner: '/**\n' +
-      ' * <%= pkg.description %>\n' +
-      ' * @version v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      ' * @link <%= pkg.homepage %>\n' +
-      ' * @author <%= pkg.author.name %> <<%= pkg.author.email %>>\n' +
-      ' * @license MIT License, http://www.opensource.org/licenses/MIT\n' +
-      ' */\n'
+        ' * <%= pkg.description %>\n' +
+        ' * @version v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' +
+        ' * @link <%= pkg.homepage %>\n' +
+        ' * @author <%= pkg.author.name %> <<%= pkg.author.email %>>\n' +
+        ' * @license MIT License, http://www.opensource.org/licenses/MIT\n' +
+        ' */\n'
     },
 
     //
@@ -34,7 +34,7 @@ module.exports = function (grunt) {
 
     clean: ['<%= dirs.dist %>'],
 
-    concat: {  // grunt-contrib-concat
+    concat: { // grunt-contrib-concat
       options: {
         banner: '<%= meta.banner %>'
       },
@@ -44,12 +44,12 @@ module.exports = function (grunt) {
       }
     },
 
-    connect: {  // grunt-contrib-connect
+    connect: { // grunt-contrib-connect
       options: {
         port: 9999,
         hostname: '0.0.0.0',
         keepalive: true,
-        middleware : function(connect) {
+        middleware: function(connect) {
           var middlewares = [];
           var serveStatic = require('serve-static');
           middlewares.push(serveStatic(dirs.demo));
@@ -70,7 +70,7 @@ module.exports = function (grunt) {
       }
     },
 
-    jshint: {  // grunt-contrib-jshint
+    jshint: { // grunt-contrib-jshint
       all: [
         'Gruntfile.js',
         '<%= dirs.src %>/**/*.js',
@@ -81,14 +81,14 @@ module.exports = function (grunt) {
       }
     },
 
-    karma: {  // grunt-karma
+    karma: { // grunt-karma
       single: {
         configFile: 'karma-unit.conf.js',
         singleRun: true
       }
     },
 
-    ngAnnotate: {  // grunt-ng-annotate
+    ngAnnotate: { // grunt-ng-annotate
       dist: {
         files: [{
           expand: true,
@@ -99,7 +99,7 @@ module.exports = function (grunt) {
       }
     },
 
-    open: {  // grunt-open
+    open: { // grunt-open
       demo: {
         path: 'http://localhost:9999/'
       }
@@ -114,7 +114,7 @@ module.exports = function (grunt) {
 
         }
       },
-      demoApp: {   // Grunt requires at least one target to run so you can simply put 'all: {}' here too.
+      demoApp: { // Grunt requires at least one target to run so you can simply put 'all: {}' here too.
         options: {
           configFile: 'protractor-e2e.conf.js', // Target-specific config file
           args: {} // Target-specific arguments
@@ -122,14 +122,14 @@ module.exports = function (grunt) {
       }
     },
 
-    release: {  // grunt-release
+    release: { // grunt-release
       options: {
         additionalFiles: ['bower.json'],
         npm: false
       }
     },
 
-    uglify: {  // grunt-contrib-uglify
+    uglify: { // grunt-contrib-uglify
       options: {
         banner: '<%= meta.banner %>'
       },
@@ -139,7 +139,7 @@ module.exports = function (grunt) {
       }
     },
 
-    watch: {  // grunt-contrib-watch
+    watch: { // grunt-contrib-watch
       src: {
         files: [
           '<%= dirs.src %>/*.js'
@@ -148,7 +148,7 @@ module.exports = function (grunt) {
       }
     },
 
-    jsbeautifier : {
+    jsbeautifier: {
       options: {
         config: '.jsbeautifyrc'
       },
