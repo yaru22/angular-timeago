@@ -70,20 +70,6 @@ module.exports = function (grunt) {
       }
     },
 
-    copy: {
-      demo: {
-        files: [{
-          expand: true,
-          flatten: true,
-          src: [
-            '<%= dirs.dist %>/<%= pkg.name %>.js'
-          ],
-          dest: '<%= dirs.demo %>/',
-          filter: 'isFile'
-        }]
-      }
-    },
-
     jshint: {  // grunt-contrib-jshint
       all: [
         'Gruntfile.js',
@@ -193,11 +179,11 @@ module.exports = function (grunt) {
   // Build task.
   grunt.registerTask('build', [
     // 'test',
+    'clean',
     'jsbeautifier',
     'concat',
     'ngAnnotate',
-    'uglify',
-    'copy'
+    'uglify'
   ]);
 
   // Run dev server.
