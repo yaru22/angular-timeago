@@ -1,13 +1,479 @@
 /**
  * Angular directive/filter/service for formatting date so that it displays how long ago the given time was compared to now.
- * @version v0.2.9 - 2016-05-06
+ * @version v0.2.9 - 2016-05-07
  * @link https://github.com/yaru22/angular-timeago
  * @author Brian Park <yaru22@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
-/* global angular */
 'use strict';
-angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
+angular.module('yaru22.angular-timeago', []);
+'use strict';
+angular.module('yaru22.angular-timeago').config([
+  'timeAgoSettings',
+  function (timeAgoSettings) {
+    timeAgoSettings.strings['ca_ES'] = {
+      prefixAgo: 'fa',
+      prefixFromNow: 'd\'aqu\xed',
+      suffixAgo: null,
+      suffixFromNow: null,
+      seconds: 'menys d\'un minut',
+      minute: 'prop d\'un minut',
+      minutes: '%d minuts',
+      hour: 'prop d\'una hora',
+      hours: 'prop de %d hores',
+      day: 'un dia',
+      days: '%d dies',
+      month: 'prop d\'un mes',
+      months: '%d mesos',
+      year: 'prop d\'un any',
+      years: '%d anys',
+      numbers: []
+    };
+  }
+]);
+'use strict';
+angular.module('yaru22.angular-timeago').config([
+  'timeAgoSettings',
+  function (timeAgoSettings) {
+    timeAgoSettings.strings['de_DE'] = {
+      prefixAgo: 'vor',
+      prefixFromNow: 'in',
+      suffixAgo: null,
+      suffixFromNow: null,
+      seconds: 'weniger als einer Minute',
+      minute: 'ca. einer Minute',
+      minutes: '%d Minuten',
+      hour: 'ca. einer Stunde',
+      hours: 'ca. %d Stunden',
+      day: 'einem Tag',
+      days: '%d Tagen',
+      month: 'ca. einem Monat',
+      months: '%d Monaten',
+      year: 'ca. einem Jahr',
+      years: '%d Jahren',
+      numbers: []
+    };
+  }
+]);
+'use strict';
+angular.module('yaru22.angular-timeago').config([
+  'timeAgoSettings',
+  function (timeAgoSettings) {
+    timeAgoSettings.strings['en_US'] = {
+      prefixAgo: null,
+      prefixFromNow: null,
+      suffixAgo: 'ago',
+      suffixFromNow: 'from now',
+      seconds: 'less than a minute',
+      minute: 'about a minute',
+      minutes: '%d minutes',
+      hour: 'about an hour',
+      hours: 'about %d hours',
+      day: 'a day',
+      days: '%d days',
+      month: 'about a month',
+      months: '%d months',
+      year: 'about a year',
+      years: '%d years',
+      numbers: []
+    };
+  }
+]);
+'use strict';
+angular.module('yaru22.angular-timeago').config([
+  'timeAgoSettings',
+  function (timeAgoSettings) {
+    timeAgoSettings.strings['es_LA'] = {
+      prefixAgo: 'hace',
+      prefixFromNow: 'en',
+      suffixAgo: null,
+      suffixFromNow: null,
+      seconds: 'menos de un minuto',
+      minute: 'un minuto',
+      minutes: '%d minutos',
+      hour: 'una hora',
+      hours: '%d horas',
+      day: 'un d\xeda',
+      days: '%d d\xedas',
+      month: 'un mes',
+      months: '%d meses',
+      year: 'un a\xf1o',
+      years: '%d a\xf1os',
+      numbers: []
+    };
+  }
+]);
+'use strict';
+angular.module('yaru22.angular-timeago').config([
+  'timeAgoSettings',
+  function (timeAgoSettings) {
+    timeAgoSettings.strings['fr_FR'] = {
+      prefixAgo: 'il y a',
+      prefixFromNow: 'dans',
+      suffixAgo: null,
+      suffixFromNow: null,
+      seconds: 'moins d\'une minute',
+      minute: 'environ une minute',
+      minutes: '%d minutes',
+      hour: 'environ une heure',
+      hours: 'environ %d heures',
+      day: 'un jour',
+      days: '%d jours',
+      month: 'environ un mois',
+      months: '%d mois',
+      year: 'environ un an',
+      years: '%d ans',
+      numbers: []
+    };
+  }
+]);
+'use strict';
+angular.module('yaru22.angular-timeago').config([
+  'timeAgoSettings',
+  function (timeAgoSettings) {
+    timeAgoSettings.strings['he_IL'] = {
+      prefixAgo: null,
+      prefixFromNow: null,
+      suffixAgo: '\u05dc\u05e4\u05e0\u05d9',
+      suffixFromNow: '\u05de\u05e2\u05db\u05e9\u05d9\u05d5',
+      seconds: '\u05e4\u05d7\u05d5\u05ea \u05de\u05d3\u05e7\u05d4',
+      minute: '\u05db\u05d3\u05e7\u05d4',
+      minutes: '%d \u05d3\u05e7\u05d5\u05ea',
+      hour: '\u05db\u05e9\u05e2\u05d4',
+      hours: '\u05db %d \u05e9\u05e2\u05d5\u05ea',
+      day: '\u05d9\u05d5\u05dd',
+      days: '%d \u05d9\u05de\u05d9\u05dd',
+      month: '\u05db\u05d7\u05d5\u05d3\u05e9',
+      months: '%d \u05d7\u05d5\u05d3\u05e9\u05d9\u05dd',
+      year: '\u05db\u05e9\u05e0\u05d4',
+      years: '%d \u05e9\u05e0\u05d9\u05dd',
+      numbers: []
+    };
+  }
+]);
+'use strict';
+angular.module('yaru22.angular-timeago').config([
+  'timeAgoSettings',
+  function (timeAgoSettings) {
+    timeAgoSettings.strings['hu_HU'] = {
+      prefixAgo: null,
+      prefixFromNow: null,
+      suffixAgo: null,
+      suffixFromNow: null,
+      seconds: 'kevesebb mint egy perce',
+      minute: 'k\xf6r\xfclbel\xfcl egy perce',
+      minutes: '%d perce',
+      hour: 'k\xf6r\xfclbel\xfcl egy \xf3r\xe1ja',
+      hours: 'k\xf6r\xfclbel\xfcl %d \xf3r\xe1ja',
+      day: 'egy napja',
+      days: '%d napja',
+      month: 'k\xf6r\xfclbel\xfcl egy h\xf3napja',
+      months: '%d h\xf3napja',
+      year: 'k\xf6r\xfclbel\xfcl egy \xe9ve',
+      years: '%d \xe9ve',
+      numbers: []
+    };
+  }
+]);
+'use strict';
+angular.module('yaru22.angular-timeago').config([
+  'timeAgoSettings',
+  function (timeAgoSettings) {
+    timeAgoSettings.strings['it_IT'] = {
+      prefixAgo: null,
+      prefixFromNow: null,
+      suffixAgo: 'fa',
+      suffixFromNow: 'da ora',
+      seconds: 'meno di un minuto',
+      minute: 'circa un minuto',
+      minutes: '%d minuti',
+      hour: 'circa un\' ora',
+      hours: 'circa %d ore',
+      day: 'un giorno',
+      days: '%d giorni',
+      month: 'circa un mese',
+      months: '%d mesi',
+      year: 'circa un anno',
+      years: '%d anni',
+      numbers: []
+    };
+  }
+]);
+'use strict';
+angular.module('yaru22.angular-timeago').config([
+  'timeAgoSettings',
+  function (timeAgoSettings) {
+    timeAgoSettings.strings['nl_NL'] = {
+      prefixAgo: null,
+      prefixFromNow: 'over',
+      suffixAgo: 'geleden',
+      suffixFromNow: 'vanaf nu',
+      seconds: 'een paar seconden',
+      minute: 'ongeveer een minuut',
+      minutes: '%d minuten',
+      hour: 'een uur',
+      hours: '%d uur',
+      day: 'een dag',
+      days: '%d dagen',
+      month: 'een maand',
+      months: '%d maanden',
+      year: 'een jaar',
+      years: '%d jaar',
+      numbers: []
+    };
+  }
+]);
+'use strict';
+angular.module('yaru22.angular-timeago').config([
+  'timeAgoSettings',
+  function (timeAgoSettings) {
+    timeAgoSettings.strings['pl_PL'] = {
+      prefixAgo: null,
+      prefixFromNow: null,
+      suffixAgo: 'temu',
+      suffixFromNow: 'od teraz',
+      seconds: 'mniej ni\u017c minuta',
+      minute: 'oko\u0142o minuty',
+      minutes: '%d minut',
+      hour: 'oko\u0142o godziny',
+      hours: 'oko\u0142o %d godzin',
+      day: 'dzie\u0144',
+      days: '%d dni',
+      month: 'oko\u0142o miesi\u0105ca',
+      months: '%d miesi\u0119cy',
+      year: 'oko\u0142o roku',
+      years: '%d lat',
+      numbers: []
+    };
+  }
+]);
+'use strict';
+angular.module('yaru22.angular-timeago').config([
+  'timeAgoSettings',
+  function (timeAgoSettings) {
+    timeAgoSettings.strings['pt_BR'] = {
+      prefixAgo: null,
+      prefixFromNow: 'daqui a',
+      suffixAgo: 'atr\xe1s',
+      suffixFromNow: null,
+      seconds: 'menos de um minuto',
+      minute: 'cerca de um minuto',
+      minutes: '%d minutos',
+      hour: 'cerca de uma hora',
+      hours: 'cerca de %d horas',
+      day: 'um dia',
+      days: '%d dias',
+      month: 'cerca de um m\xeas',
+      months: '%d meses',
+      year: 'cerca de um ano',
+      years: '%d anos',
+      numbers: []
+    };
+  }
+]);
+'use strict';
+angular.module('yaru22.angular-timeago').config([
+  'timeAgoSettings',
+  function (timeAgoSettings) {
+    timeAgoSettings.strings['sv_SE'] = {
+      prefixAgo: null,
+      prefixFromNow: 'om',
+      suffixAgo: 'sen',
+      suffixFromNow: null,
+      seconds: 'mindre \xe4n en minut',
+      minute: 'cirka en minut',
+      minutes: '%d minuter',
+      hour: 'cirka en timme',
+      hours: 'cirka %d timmar',
+      day: 'en dag',
+      days: '%d dagar',
+      month: 'cirka en m\xe5nad',
+      months: '%d m\xe5nader',
+      year: 'cirka ett \xe5r',
+      years: '%d \xe5r',
+      numbers: []
+    };
+  }
+]);
+'use strict';
+angular.module('yaru22.angular-timeago').config([
+  'timeAgoSettings',
+  function (timeAgoSettings) {
+    timeAgoSettings.strings['zh_CN'] = {
+      wordSeparator: '',
+      prefixAgo: null,
+      prefixFromNow: null,
+      suffixAgo: '\u524d',
+      suffixFromNow: '\u540e',
+      seconds: '1\u5206\u949f',
+      minute: '1\u5206\u949f',
+      minutes: '%d\u5206\u949f',
+      hour: '1\u5c0f\u65f6',
+      hours: '%d\u5c0f\u65f6',
+      day: '1\u5929',
+      days: '%d\u5929',
+      month: '1\u4e2a\u6708',
+      months: '%d\u4e2a\u6708',
+      year: '1\u5e74',
+      years: '%d\u5e74',
+      numbers: []
+    };
+  }
+]);
+'use strict';
+angular.module('yaru22.angular-timeago').config([
+  'timeAgoSettings',
+  function (timeAgoSettings) {
+    timeAgoSettings.strings['zh_TW'] = {
+      wordSeparator: '',
+      prefixAgo: null,
+      prefixFromNow: null,
+      suffixAgo: '\u524d',
+      suffixFromNow: '\u5f8c',
+      seconds: '\u5c11\u65bc\u4e00\u5206\u9418',
+      minute: '\u4e00\u5206\u9418',
+      minutes: '%d\u5206\u9418',
+      hour: '\u4e00\u5c0f\u6642',
+      hours: '%d\u5c0f\u6642',
+      day: '\u4e00\u65e5',
+      days: '%d\u65e5',
+      month: '\u4e00\u500b\u6708',
+      months: '%d\u500b\u6708',
+      year: '\u4e00\u5e74',
+      years: '%d\u5e74',
+      numbers: [
+        '\u96f6',
+        '\u4e00',
+        '\u4e8c',
+        '\u4e09',
+        '\u56db',
+        '\u4e94',
+        '\u516d',
+        '\u4e03',
+        '\u516b',
+        '\u4e5d',
+        '\u5341',
+        '\u5341\u4e00',
+        '\u5341\u4e8c',
+        '\u5341\u4e09',
+        '\u5341\u56db',
+        '\u5341\u4e94',
+        '\u5341\u516d',
+        '\u5341\u4e03',
+        '\u5341\u516b',
+        '\u5341\u4e5d',
+        '\u4e8c\u5341',
+        '\u5eff\u4e00',
+        '\u5eff\u4e8c',
+        '\u5eff\u4e09',
+        '\u5eff\u56db',
+        '\u5eff\u4e94',
+        '\u5eff\u516d',
+        '\u5eff\u4e03',
+        '\u5eff\u516b',
+        '\u5eff\u4e5d',
+        '\u4e09\u5341',
+        '\u5345\u4e00',
+        '\u5345\u4e8c',
+        '\u5345\u4e09',
+        '\u5345\u56db',
+        '\u5345\u4e94',
+        '\u5345\u516d',
+        '\u5345\u4e03',
+        '\u5345\u516b',
+        '\u5345\u4e5d',
+        '\u56db\u5341',
+        '\u534c\u4e00',
+        '\u534c\u4e8c',
+        '\u534c\u4e09',
+        '\u534c\u56db',
+        '\u534c\u4e94',
+        '\u534c\u516d',
+        '\u534c\u4e03',
+        '\u534c\u516b',
+        '\u534c\u4e5d',
+        '\u4e94\u5341',
+        '\u4e94\u5341\u4e00',
+        '\u4e94\u5341\u4e8c',
+        '\u4e94\u5341\u4e09',
+        '\u4e94\u5341\u56db',
+        '\u4e94\u5341\u4e94',
+        '\u4e94\u5341\u516d',
+        '\u4e94\u5341\u4e03',
+        '\u4e94\u5341\u516b',
+        '\u4e94\u5341\u4e5d',
+        '\u516d\u5341',
+        '\u516d\u5341\u4e00',
+        '\u516d\u5341\u4e8c',
+        '\u516d\u5341\u4e09',
+        '\u516d\u5341\u56db',
+        '\u516d\u5341\u4e94',
+        '\u516d\u5341\u516d',
+        '\u516d\u5341\u4e03',
+        '\u516d\u5341\u516b',
+        '\u516d\u5341\u4e5d',
+        '\u4e03\u5341',
+        '\u4e03\u5341\u4e00',
+        '\u4e03\u5341\u4e8c',
+        '\u4e03\u5341\u4e09',
+        '\u4e03\u5341\u56db',
+        '\u4e03\u5341\u4e94',
+        '\u4e03\u5341\u516d',
+        '\u4e03\u5341\u4e03',
+        '\u4e03\u5341\u516b',
+        '\u4e03\u5341\u4e5d',
+        '\u516b\u5341',
+        '\u516b\u5341\u4e00',
+        '\u516b\u5341\u4e8c',
+        '\u516b\u5341\u4e09',
+        '\u516b\u5341\u56db',
+        '\u516b\u5341\u4e94',
+        '\u516b\u5341\u516d',
+        '\u516b\u5341\u4e03',
+        '\u516b\u5341\u516b',
+        '\u516b\u5341\u4e5d',
+        '\u4e5d\u5341',
+        '\u4e5d\u5341\u4e00',
+        '\u4e5d\u5341\u4e8c',
+        '\u4e5d\u5341\u4e09',
+        '\u4e5d\u5341\u56db',
+        '\u4e5d\u5341\u4e94',
+        '\u4e5d\u5341\u516d',
+        '\u4e5d\u5341\u4e03',
+        '\u4e5d\u5341\u516b',
+        '\u4e5d\u5341\u4e5d',
+        '\u4e00\u767e'
+      ]
+    };
+  }
+]);
+'use strict';
+angular.module('yaru22.angular-timeago').factory('nowTime', [
+  '$interval',
+  'timeAgo',
+  'timeAgoSettings',
+  function ($interval, timeAgo, timeAgoSettings) {
+    var nowTime;
+    function updateTime() {
+      nowTime = Date.now();
+    }
+    updateTime();
+    $interval(updateTime, timeAgoSettings.refreshMillis);
+    return function () {
+      return nowTime;
+    };
+  }
+]);
+'use strict';
+angular.module('yaru22.angular-timeago').constant('timeAgoSettings', {
+  refreshMillis: 1000,
+  allowFuture: false,
+  overrideLang: null,
+  fullDateAfterSeconds: null,
+  strings: {}
+});
+'use strict';
+angular.module('yaru22.angular-timeago').directive('timeAgo', [
   'timeAgo',
   'nowTime',
   function (timeAgo, nowTime) {
@@ -28,390 +494,15 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
       }
     };
   }
-]).factory('nowTime', [
-  '$interval',
-  'timeAgo',
-  function ($interval, timeAgo) {
-    var nowTime;
-    function updateTime() {
-      nowTime = Date.now();
-    }
-    updateTime();
-    $interval(updateTime, timeAgo.settings.refreshMillis);
-    return function () {
-      return nowTime;
-    };
-  }
-]).factory('timeAgo', [
+]);
+'use strict';
+angular.module('yaru22.angular-timeago').factory('timeAgo', [
   '$filter',
-  function ($filter) {
+  'timeAgoSettings',
+  function ($filter, timeAgoSettings) {
     var service = {};
-    service.settings = {
-      refreshMillis: 1000,
-      allowFuture: false,
-      overrideLang: null,
-      fullDateAfterSeconds: null,
-      strings: {
-        'pl_PL': {
-          prefixAgo: null,
-          prefixFromNow: null,
-          suffixAgo: 'temu',
-          suffixFromNow: 'od teraz',
-          seconds: 'mniej ni\u017c minuta',
-          minute: 'oko\u0142o minuty',
-          minutes: '%d minut',
-          hour: 'oko\u0142o godziny',
-          hours: 'oko\u0142o %d godzin',
-          day: 'dzie\u0144',
-          days: '%d dni',
-          month: 'oko\u0142o miesi\u0105ca',
-          months: '%d miesi\u0119cy',
-          year: 'oko\u0142o roku',
-          years: '%d lat',
-          numbers: []
-        },
-        'it_IT': {
-          prefixAgo: null,
-          prefixFromNow: null,
-          suffixAgo: 'fa',
-          suffixFromNow: 'da ora',
-          seconds: 'meno di un minuto',
-          minute: 'circa un minuto',
-          minutes: '%d minuti',
-          hour: 'circa un\' ora',
-          hours: 'circa %d ore',
-          day: 'un giorno',
-          days: '%d giorni',
-          month: 'circa un mese',
-          months: '%d mesi',
-          year: 'circa un anno',
-          years: '%d anni',
-          numbers: []
-        },
-        'en_US': {
-          prefixAgo: null,
-          prefixFromNow: null,
-          suffixAgo: 'ago',
-          suffixFromNow: 'from now',
-          seconds: 'less than a minute',
-          minute: 'about a minute',
-          minutes: '%d minutes',
-          hour: 'about an hour',
-          hours: 'about %d hours',
-          day: 'a day',
-          days: '%d days',
-          month: 'about a month',
-          months: '%d months',
-          year: 'about a year',
-          years: '%d years',
-          numbers: []
-        },
-        'de_DE': {
-          prefixAgo: 'vor',
-          prefixFromNow: 'in',
-          suffixAgo: null,
-          suffixFromNow: null,
-          seconds: 'weniger als einer Minute',
-          minute: 'ca. einer Minute',
-          minutes: '%d Minuten',
-          hour: 'ca. einer Stunde',
-          hours: 'ca. %d Stunden',
-          day: 'einem Tag',
-          days: '%d Tagen',
-          month: 'ca. einem Monat',
-          months: '%d Monaten',
-          year: 'ca. einem Jahr',
-          years: '%d Jahren',
-          numbers: []
-        },
-        'he_IL': {
-          prefixAgo: null,
-          prefixFromNow: null,
-          suffixAgo: '\u05dc\u05e4\u05e0\u05d9',
-          suffixFromNow: '\u05de\u05e2\u05db\u05e9\u05d9\u05d5',
-          seconds: '\u05e4\u05d7\u05d5\u05ea \u05de\u05d3\u05e7\u05d4',
-          minute: '\u05db\u05d3\u05e7\u05d4',
-          minutes: '%d \u05d3\u05e7\u05d5\u05ea',
-          hour: '\u05db\u05e9\u05e2\u05d4',
-          hours: '\u05db %d \u05e9\u05e2\u05d5\u05ea',
-          day: '\u05d9\u05d5\u05dd',
-          days: '%d \u05d9\u05de\u05d9\u05dd',
-          month: '\u05db\u05d7\u05d5\u05d3\u05e9',
-          months: '%d \u05d7\u05d5\u05d3\u05e9\u05d9\u05dd',
-          year: '\u05db\u05e9\u05e0\u05d4',
-          years: '%d \u05e9\u05e0\u05d9\u05dd',
-          numbers: []
-        },
-        'pt_BR': {
-          prefixAgo: null,
-          prefixFromNow: 'daqui a',
-          suffixAgo: 'atr\xe1s',
-          suffixFromNow: null,
-          seconds: 'menos de um minuto',
-          minute: 'cerca de um minuto',
-          minutes: '%d minutos',
-          hour: 'cerca de uma hora',
-          hours: 'cerca de %d horas',
-          day: 'um dia',
-          days: '%d dias',
-          month: 'cerca de um m\xeas',
-          months: '%d meses',
-          year: 'cerca de um ano',
-          years: '%d anos',
-          numbers: []
-        },
-        'ca_ES': {
-          prefixAgo: 'fa',
-          prefixFromNow: 'd\'aqu\xed',
-          suffixAgo: null,
-          suffixFromNow: null,
-          seconds: 'menys d\'un minut',
-          minute: 'prop d\'un minut',
-          minutes: '%d minuts',
-          hour: 'prop d\'una hora',
-          hours: 'prop de %d hores',
-          day: 'un dia',
-          days: '%d dies',
-          month: 'prop d\'un mes',
-          months: '%d mesos',
-          year: 'prop d\'un any',
-          years: '%d anys',
-          numbers: []
-        },
-        'fr_FR': {
-          prefixAgo: 'il y a',
-          prefixFromNow: 'dans',
-          suffixAgo: null,
-          suffixFromNow: null,
-          seconds: 'moins d\'une minute',
-          minute: 'environ une minute',
-          minutes: '%d minutes',
-          hour: 'environ une heure',
-          hours: 'environ %d heures',
-          day: 'un jour',
-          days: '%d jours',
-          month: 'environ un mois',
-          months: '%d mois',
-          year: 'environ un an',
-          years: '%d ans',
-          numbers: []
-        },
-        'es_LA': {
-          prefixAgo: 'hace',
-          prefixFromNow: 'en',
-          suffixAgo: null,
-          suffixFromNow: null,
-          seconds: 'menos de un minuto',
-          minute: 'un minuto',
-          minutes: '%d minutos',
-          hour: 'una hora',
-          hours: '%d horas',
-          day: 'un d\xeda',
-          days: '%d d\xedas',
-          month: 'un mes',
-          months: '%d meses',
-          year: 'un a\xf1o',
-          years: '%d a\xf1os',
-          numbers: []
-        },
-        'nl_NL': {
-          prefixAgo: null,
-          prefixFromNow: 'over',
-          suffixAgo: 'geleden',
-          suffixFromNow: 'vanaf nu',
-          seconds: 'een paar seconden',
-          minute: 'ongeveer een minuut',
-          minutes: '%d minuten',
-          hour: 'een uur',
-          hours: '%d uur',
-          day: 'een dag',
-          days: '%d dagen',
-          month: 'een maand',
-          months: '%d maanden',
-          year: 'een jaar',
-          years: '%d jaar',
-          numbers: []
-        },
-        'zh_TW': {
-          wordSeparator: '',
-          prefixAgo: null,
-          prefixFromNow: null,
-          suffixAgo: '\u524d',
-          suffixFromNow: '\u5f8c',
-          seconds: '\u5c11\u65bc\u4e00\u5206\u9418',
-          minute: '\u4e00\u5206\u9418',
-          minutes: '%d\u5206\u9418',
-          hour: '\u4e00\u5c0f\u6642',
-          hours: '%d\u5c0f\u6642',
-          day: '\u4e00\u65e5',
-          days: '%d\u65e5',
-          month: '\u4e00\u500b\u6708',
-          months: '%d\u500b\u6708',
-          year: '\u4e00\u5e74',
-          years: '%d\u5e74',
-          numbers: [
-            '\u96f6',
-            '\u4e00',
-            '\u4e8c',
-            '\u4e09',
-            '\u56db',
-            '\u4e94',
-            '\u516d',
-            '\u4e03',
-            '\u516b',
-            '\u4e5d',
-            '\u5341',
-            '\u5341\u4e00',
-            '\u5341\u4e8c',
-            '\u5341\u4e09',
-            '\u5341\u56db',
-            '\u5341\u4e94',
-            '\u5341\u516d',
-            '\u5341\u4e03',
-            '\u5341\u516b',
-            '\u5341\u4e5d',
-            '\u4e8c\u5341',
-            '\u5eff\u4e00',
-            '\u5eff\u4e8c',
-            '\u5eff\u4e09',
-            '\u5eff\u56db',
-            '\u5eff\u4e94',
-            '\u5eff\u516d',
-            '\u5eff\u4e03',
-            '\u5eff\u516b',
-            '\u5eff\u4e5d',
-            '\u4e09\u5341',
-            '\u5345\u4e00',
-            '\u5345\u4e8c',
-            '\u5345\u4e09',
-            '\u5345\u56db',
-            '\u5345\u4e94',
-            '\u5345\u516d',
-            '\u5345\u4e03',
-            '\u5345\u516b',
-            '\u5345\u4e5d',
-            '\u56db\u5341',
-            '\u534c\u4e00',
-            '\u534c\u4e8c',
-            '\u534c\u4e09',
-            '\u534c\u56db',
-            '\u534c\u4e94',
-            '\u534c\u516d',
-            '\u534c\u4e03',
-            '\u534c\u516b',
-            '\u534c\u4e5d',
-            '\u4e94\u5341',
-            '\u4e94\u5341\u4e00',
-            '\u4e94\u5341\u4e8c',
-            '\u4e94\u5341\u4e09',
-            '\u4e94\u5341\u56db',
-            '\u4e94\u5341\u4e94',
-            '\u4e94\u5341\u516d',
-            '\u4e94\u5341\u4e03',
-            '\u4e94\u5341\u516b',
-            '\u4e94\u5341\u4e5d',
-            '\u516d\u5341',
-            '\u516d\u5341\u4e00',
-            '\u516d\u5341\u4e8c',
-            '\u516d\u5341\u4e09',
-            '\u516d\u5341\u56db',
-            '\u516d\u5341\u4e94',
-            '\u516d\u5341\u516d',
-            '\u516d\u5341\u4e03',
-            '\u516d\u5341\u516b',
-            '\u516d\u5341\u4e5d',
-            '\u4e03\u5341',
-            '\u4e03\u5341\u4e00',
-            '\u4e03\u5341\u4e8c',
-            '\u4e03\u5341\u4e09',
-            '\u4e03\u5341\u56db',
-            '\u4e03\u5341\u4e94',
-            '\u4e03\u5341\u516d',
-            '\u4e03\u5341\u4e03',
-            '\u4e03\u5341\u516b',
-            '\u4e03\u5341\u4e5d',
-            '\u516b\u5341',
-            '\u516b\u5341\u4e00',
-            '\u516b\u5341\u4e8c',
-            '\u516b\u5341\u4e09',
-            '\u516b\u5341\u56db',
-            '\u516b\u5341\u4e94',
-            '\u516b\u5341\u516d',
-            '\u516b\u5341\u4e03',
-            '\u516b\u5341\u516b',
-            '\u516b\u5341\u4e5d',
-            '\u4e5d\u5341',
-            '\u4e5d\u5341\u4e00',
-            '\u4e5d\u5341\u4e8c',
-            '\u4e5d\u5341\u4e09',
-            '\u4e5d\u5341\u56db',
-            '\u4e5d\u5341\u4e94',
-            '\u4e5d\u5341\u516d',
-            '\u4e5d\u5341\u4e03',
-            '\u4e5d\u5341\u516b',
-            '\u4e5d\u5341\u4e5d',
-            '\u4e00\u767e'
-          ]
-        },
-        'zh_CN': {
-          wordSeparator: '',
-          prefixAgo: null,
-          prefixFromNow: null,
-          suffixAgo: '\u524d',
-          suffixFromNow: '\u540e',
-          seconds: '1\u5206\u949f',
-          minute: '1\u5206\u949f',
-          minutes: '%d\u5206\u949f',
-          hour: '1\u5c0f\u65f6',
-          hours: '%d\u5c0f\u65f6',
-          day: '1\u5929',
-          days: '%d\u5929',
-          month: '1\u4e2a\u6708',
-          months: '%d\u4e2a\u6708',
-          year: '1\u5e74',
-          years: '%d\u5e74',
-          numbers: []
-        },
-        'sv_SE': {
-          prefixAgo: null,
-          prefixFromNow: 'om',
-          suffixAgo: 'sen',
-          suffixFromNow: null,
-          seconds: 'mindre \xe4n en minut',
-          minute: 'cirka en minut',
-          minutes: '%d minuter',
-          hour: 'cirka en timme',
-          hours: 'cirka %d timmar',
-          day: 'en dag',
-          days: '%d dagar',
-          month: 'cirka en m\xe5nad',
-          months: '%d m\xe5nader',
-          year: 'cirka ett \xe5r',
-          years: '%d \xe5r',
-          numbers: []
-        },
-        'hu_HU': {
-          prefixAgo: null,
-          prefixFromNow: null,
-          suffixAgo: null,
-          suffixFromNow: null,
-          seconds: 'kevesebb mint egy perce',
-          minute: 'k\xf6r\xfclbel\xfcl egy perce',
-          minutes: '%d perce',
-          hour: 'k\xf6r\xfclbel\xfcl egy \xf3r\xe1ja',
-          hours: 'k\xf6r\xfclbel\xfcl %d \xf3r\xe1ja',
-          day: 'egy napja',
-          days: '%d napja',
-          month: 'k\xf6r\xfclbel\xfcl egy h\xf3napja',
-          months: '%d h\xf3napja',
-          year: 'k\xf6r\xfclbel\xfcl egy \xe9ve',
-          years: '%d \xe9ve',
-          numbers: []
-        }
-      }
-    };
     service.inWords = function (distanceMillis, fromTime, format, timezone) {
-      var fullDateAfterSeconds = parseInt(service.settings.fullDateAfterSeconds, 10);
+      var fullDateAfterSeconds = parseInt(timeAgoSettings.fullDateAfterSeconds, 10);
       if (!isNaN(fullDateAfterSeconds)) {
         var fullDateAfterMillis = fullDateAfterSeconds * 1000;
         if (distanceMillis >= 0 && fullDateAfterMillis <= distanceMillis || distanceMillis < 0 && fullDateAfterMillis >= distanceMillis) {
@@ -421,9 +512,9 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
           return fromTime;
         }
       }
-      var overrideLang = service.settings.overrideLang;
+      var overrideLang = timeAgoSettings.overrideLang;
       var documentLang = document.documentElement.lang;
-      var sstrings = service.settings.strings;
+      var sstrings = timeAgoSettings.strings;
       var lang, $l;
       if (typeof sstrings[overrideLang] !== 'undefined') {
         lang = overrideLang;
@@ -437,7 +528,7 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
       }
       var prefix = $l.prefixAgo;
       var suffix = $l.suffixAgo;
-      if (service.settings.allowFuture) {
+      if (timeAgoSettings.allowFuture) {
         if (distanceMillis < 0) {
           prefix = $l.prefixFromNow;
           suffix = $l.suffixFromNow;
@@ -489,7 +580,9 @@ angular.module('yaru22.angular-timeago', []).directive('timeAgo', [
     };
     return service;
   }
-]).filter('timeAgo', [
+]);
+'use strict';
+angular.module('yaru22.angular-timeago').filter('timeAgo', [
   'nowTime',
   'timeAgo',
   function (nowTime, timeAgo) {
