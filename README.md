@@ -13,7 +13,7 @@ Check out the demo [here](http://www.brianpark.ca/projects/angular_timeago/demo/
 bower install --save angular-timeago
 ```
 **Reference in module**
-```
+```js
 var app = angular.module('ngApp', [
   'yaru22.angular-timeago'
 ]);
@@ -134,6 +134,26 @@ angular.module('yaru22.angular-timeago').config(function(timeAgoSettings) {
   }
 });
 ```
+
+
+## Language pickup
+
+By adding many new language to the project, the library will get bigger and bigger overtime.
+If you need only few languages, you may want no to embedded all the available languages.
+So that, instead of linking to the full library like this :
+
+```html
+<script src="bower_components/angular-timeago/dist/angular-timeago.min.js"></script>
+```
+
+you may prefer to pickup only the languages you want :
+
+```html
+<script src="bower_components/angular-timeago/dist/angular-timeago-core.min.js"></script>
+<script src="bower_components/angular-timeago/src/languages/time-ago-language-en_US.js"></script>
+```
+
+In that case, don't forget to concat your JS files into your own worklow.
 
 
 
