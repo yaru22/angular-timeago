@@ -49,14 +49,14 @@ module.exports = function (grunt) {
         port: 9999,
         hostname: '0.0.0.0',
         keepalive: true,
-		middleware : function(connect) {
-			var middlewares = [];
-			var serveStatic = require('serve-static');
-			middlewares.push(serveStatic(dirs.demo));
-			middlewares.push(connect().use('/bower_components', serveStatic('./bower_components')));
-			middlewares.push(connect().use('/dist', serveStatic(dirs.dist)));
-			return middlewares;
-		}
+        middleware : function(connect) {
+          var middlewares = [];
+          var serveStatic = require('serve-static');
+          middlewares.push(serveStatic(dirs.demo));
+          middlewares.push(connect().use('/bower_components', serveStatic('./bower_components')));
+          middlewares.push(connect().use('/dist', serveStatic(dirs.dist)));
+          return middlewares;
+        }
       },
       dev: {
         options: {
@@ -162,12 +162,12 @@ module.exports = function (grunt) {
       }
     },
 
-	jsbeautifier : {
-		options: {
-			config: '.jsbeautifyrc'
-		},
-		dev : [ '<%= dirs.src %>/**/*.js' ]
-	}
+    jsbeautifier : {
+      options: {
+        config: '.jsbeautifyrc'
+      },
+      dev : [ '<%= dirs.src %>/**/*.js' ]
+    }
   });
 
 
@@ -195,7 +195,7 @@ module.exports = function (grunt) {
     // 'test',
     'jsbeautifier',
     'concat',
-    'ngmin',
+    'ngAnnotate',
     'uglify',
     'copy'
   ]);
