@@ -108,17 +108,17 @@ app.controller('appCtrl', function (timeAgo) {
 ```
 You can also add additional or alter existing languages at runtime by extending the service:
 ```javascript  
-app.controller('appCtrl', function (timeAgo) {
-  timeAgo.settings.strings.en_US = {
+app.controller('appCtrl', function (timeAgoSettings) {
+  timeAgoSettings.strings.en_US = {
     // appropriate keys here
   };
 });
 ```
-For more details refer to the [source code](https://github.com/yaru22/angular-timeago/blob/master/src/timeAgo.js#L47).
-  
+
+If you want to add a new language to the open source project, please refer to section [Add a new language](#new-language).
 
 
-## Add a new language
+##<a name="new-language"/>Add a new language
 
 To add a new language if the one you want is missing :
 
