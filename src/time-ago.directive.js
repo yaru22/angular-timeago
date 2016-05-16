@@ -8,7 +8,12 @@ angular.module('yaru22.angular-timeago').directive('timeAgo', function(timeAgo, 
     },
     restrict: 'EA',
     link: function(scope, elem) {
-      var fromTime = timeAgo.parse(scope.fromTime);
+      var fromTime;
+
+      // Track changes to fromTime
+      scope.$watch('fromTime', function(value) {
+        fromTime = timeAgo.parse(scope.fromTime);
+      });
 
       // Track changes to time difference
       scope.$watch(function() {
