@@ -46,15 +46,15 @@ The format filter will only take effect if you've configured the service to disp
 timeAgo has several configurable settings to tweak the default behavior.  
 
 ```javascript
-angular.controller('appCtrl', function (timeAgo) {
-    timeAgo.settings.<setting> = <value>;
+angular.config(function (timeAgoSettings) {
+    timeAgoSettings.<setting> = <value>;
 });
 ```
 
 ####<a name="config-future"/>`allowFuture`  
 Default: `false`
 ```javascript
-timeAgo.settings.allowFuture = true;
+timeAgoSettings.allowFuture = true;
 ```
 This will allow timeAgo to format dates in the future as well. e.g. "2 hours from now"
 
@@ -67,7 +67,7 @@ Default: `null`
 ```javascript
 // even though the page's setting is 'en_US', timeAgo filtered
 // dates will render in 'es_LA'
-timeAgo.settings.overrideLang = 'es_LA';
+timeAgoSettings.overrideLang = 'es_LA';
 ```
 See [Language Support](#lang) for languages this library supports. 
 
@@ -76,21 +76,41 @@ Default: `null`
 ```javascript
 // After 24 hours, display the date normally.
 var oneDay = 60*60*24;
-timeAgo.settings.fullDateAfterSeconds = oneDay;
+timeAgoSettings.fullDateAfterSeconds = oneDay;
 ```
 This configures `timeAgo` to use it's own filters (`about a minute ago`, `about 4 hours ago`, etc) until `fullDateAfterSeconds` seconds have passed, and then it will display the date as normal.  This is useful when combined with a [date format filter](#filter-format).
 
 ####<a name="config-refreshMillis"/>`refreshMillis`
 Default: `1000`
 ```javascript
-timeAgo.settings.refreshMillis = 60000;
+timeAgoSettings.refreshMillis = 60000;
 ```
 This configures `timeAgo` to use a different refresh interval (in milliseconds).
 Note that this setting needs to be set early in the `run` function before the `nowTime` factory is used by a directive/filter/controller.
 
+####<a name="config-breakpoints"/>`breakpoints`
+Default:
+```js
+{
+  secondsToMinute: 45, // in seconds
+  secondsToMinutes: 90, // in seconds
+  minutesToHour: 45, // in minutes
+  minutesToHours: 90, // in minutes
+  hoursToDay: 24, // in hours
+  hoursToDays: 42, // in hours
+  daysToMonth: 30, // in days
+  daysToMonths: 45, // in days
+  daysToYear: 365, // in days
+  yearToYears: 1.5 // in year
+}
+```
+This configure `timeAgo` at which points changing the string format.
+For example, the default behavior will display `less than a minute ago`until 45 seconds, then it will display `about a minute`.
+
 ###<a name="lang"/>Language support
 angular-timeago currently supports the following languages:  
-`en_US`, `de_DE`, `he_IL`, `pt_BR`, `it_IT`, `fr_FR`, `es_LA`, `nl_NL`, `ca_ES` and `sv_SE`.
+`ca_ES`, `de_DE`, `en_US`, `es_LA`, `fr_FR`, `he_IL`, `hu_HU`, `it_IT`, `nl_NL`, `pl_PL`, `pt_BR`, `sv_SE`, `zh_CN`, `zh_TW`.
+
 If you want more languages: feel free to contribute!
 The language is determined by the string in `document.documentElement.lang` which you can set in your HTML markup:
 ```
@@ -102,13 +122,13 @@ window.document.documentElement.lang = 'en_US';
 ```
 Or configure the service to override the default language:
 ```javascript  
-app.controller('appCtrl', function (timeAgo) {
-  timeAgo.settings.overrideLang = 'es_LA';
+angular.config(function (timeAgoSettings) {
+  timeAgoSettings.overrideLang = 'es_LA';
 });
 ```
 You can also add additional or alter existing languages at runtime by extending the service:
 ```javascript  
-app.controller('appCtrl', function (timeAgoSettings) {
+angular.config(function (timeAgoSettings) {
   timeAgoSettings.strings.en_US = {
     // appropriate keys here
   };

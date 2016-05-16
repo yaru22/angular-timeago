@@ -50,23 +50,25 @@ angular.module('yaru22.angular-timeago').factory('timeAgo', function($filter, ti
     var years = days / 365;
 
     function substitute(stringOrFunction, number) {
+      number = Math.round(number);
       var string = angular.isFunction(stringOrFunction) ?
         stringOrFunction(number, distanceMillis) : stringOrFunction;
       var value = ($l.numbers && $l.numbers[number]) || number;
       return string.replace(/%d/i, value);
     }
 
-    var words = seconds < 45 && substitute($l.seconds, Math.round(seconds)) ||
-      seconds < 90 && substitute($l.minute, 1) ||
-      minutes < 45 && substitute($l.minutes, Math.round(minutes)) ||
-      minutes < 90 && substitute($l.hour, 1) ||
-      hours < 24 && substitute($l.hours, Math.round(hours)) ||
-      hours < 42 && substitute($l.day, 1) ||
-      days < 30 && substitute($l.days, Math.round(days)) ||
-      days < 45 && substitute($l.month, 1) ||
-      days < 365 && substitute($l.months, Math.round(days / 30)) ||
-      years < 1.5 && substitute($l.year, 1) ||
-      substitute($l.years, Math.round(years));
+    var breakpoints = timeAgoSettings.breakpoints;
+    var words = seconds < breakpoints.secondsToMinute && substitute($l.seconds, seconds) ||
+      seconds < breakpoints.secondsToMinutes && substitute($l.minute, 1) ||
+      minutes < breakpoints.minutesToHour && substitute($l.minutes, minutes) ||
+      minutes < breakpoints.minutesToHours && substitute($l.hour, 1) ||
+      hours < breakpoints.hoursToDay && substitute($l.hours, hours) ||
+      hours < breakpoints.hoursToDays && substitute($l.day, 1) ||
+      days < breakpoints.daysToMonth && substitute($l.days, days) ||
+      days < breakpoints.daysToMonths && substitute($l.month, 1) ||
+      days < breakpoints.daysToYear && substitute($l.months, days / 30) ||
+      years < breakpoints.yearToYears && substitute($l.year, 1) ||
+      substitute($l.years, years);
 
     var separator = $l.wordSeparator === undefined ? ' ' : $l.wordSeparator;
     if (lang === 'he_IL') {
