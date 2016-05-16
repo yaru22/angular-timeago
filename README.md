@@ -13,7 +13,7 @@ Check out the demo [here](http://www.brianpark.ca/projects/angular_timeago/demo/
 bower install --save angular-timeago
 ```
 **Reference in module**
-```
+```js
 var app = angular.module('ngApp', [
   'yaru22.angular-timeago'
 ]);
@@ -108,14 +108,53 @@ app.controller('appCtrl', function (timeAgo) {
 ```
 You can also add additional or alter existing languages at runtime by extending the service:
 ```javascript  
-app.controller('appCtrl', function (timeAgo) {
-  timeAgo.settings.strings.en_US = {
+app.controller('appCtrl', function (timeAgoSettings) {
+  timeAgoSettings.strings.en_US = {
     // appropriate keys here
   };
 });
 ```
-For more details refer to the [source code](https://github.com/yaru22/angular-timeago/blob/master/src/timeAgo.js#L47).
-  
+
+If you want to add a new language to the open source project, please refer to section [Add a new language](#new-language).
+
+
+##<a name="new-language"/>Add a new language
+
+To add a new language if the one you want is missing :
+
+- create a new file into the languages folder : src/languages/time-ago-language-xx_XX.js
+- in that file, set your language definition as this :
+
+```js
+'use strict';
+
+angular.module('yaru22.angular-timeago').config(function(timeAgoSettings) {
+  timeAgoSettings.strings['xx_XX'] = {
+    ... TODO =) ...
+  }
+});
+```
+
+
+## Language pickup
+
+By adding many new language to the project, the library will get bigger and bigger overtime.
+If you need only few languages, you may want no to embedded all the available languages.
+So that, instead of linking to the full library like this :
+
+```html
+<script src="bower_components/angular-timeago/dist/angular-timeago.min.js"></script>
+```
+
+you may prefer to pickup only the languages you want :
+
+```html
+<script src="bower_components/angular-timeago/dist/angular-timeago-core.min.js"></script>
+<script src="bower_components/angular-timeago/src/languages/time-ago-language-en_US.js"></script>
+```
+
+In that case, don't forget to concat your JS files into your own worklow.
+
 
 
 ## Testing

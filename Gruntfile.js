@@ -41,6 +41,10 @@ module.exports = function(grunt) {
       js: {
         src: ['<%= dirs.src %>/module.js', '<%= dirs.src %>/**/*.js'],
         dest: '<%= dirs.dist %>/<%= pkg.name %>.js'
+      },
+      jsCoreOnly: {
+        src: ['<%= dirs.src %>/module.js', '<%= dirs.src %>/*.js'],
+        dest: '<%= dirs.dist %>/<%= pkg.name %>-core.js'
       }
     },
 
@@ -134,8 +138,13 @@ module.exports = function(grunt) {
         banner: '<%= meta.banner %>'
       },
       dist: {
-        src: ['<%= dirs.dist %>/<%= pkg.name %>.js'],
-        dest: '<%= dirs.dist %>/<%= pkg.name %>.min.js'
+        files: [{
+          expand: true,
+          cwd: '<%= dirs.dist %>',
+          src: '*.js',
+          dest: '<%= dirs.dist %>',
+          ext: '.min.js'
+        }],
       }
     },
 
