@@ -1,6 +1,6 @@
 /**
  * Angular directive/filter/service for formatting date so that it displays how long ago the given time was compared to now.
- * @version v0.3.0 - 2016-05-12
+ * @version v0.4.0 - 2016-05-16
  * @link https://github.com/yaru22/angular-timeago
  * @author Brian Park <yaru22@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -32,7 +32,19 @@ angular.module('yaru22.angular-timeago').constant('timeAgoSettings', {
   allowFuture: false,
   overrideLang: null,
   fullDateAfterSeconds: null,
-  strings: {}
+  strings: {},
+  breakpoints: {
+    secondsToMinute: 45, // in seconds
+    secondsToMinutes: 90, // in seconds
+    minutesToHour: 45, // in minutes
+    minutesToHours: 90, // in minutes
+    hoursToDay: 24, // in hours
+    hoursToDays: 42, // in hours
+    daysToMonth: 30, // in days
+    daysToMonths: 45, // in days
+    daysToYear: 365, // in days
+    yearToYears: 1.5 // in year
+  }
 });
 
 'use strict';
@@ -45,7 +57,12 @@ angular.module('yaru22.angular-timeago').directive('timeAgo', ["timeAgo", "nowTi
     },
     restrict: 'EA',
     link: function(scope, elem) {
-      var fromTime = timeAgo.parse(scope.fromTime);
+      var fromTime;
+
+      // Track changes to fromTime
+      scope.$watch('fromTime', function(value) {
+        fromTime = timeAgo.parse(scope.fromTime);
+      });
 
       // Track changes to time difference
       scope.$watch(function() {
@@ -109,23 +126,25 @@ angular.module('yaru22.angular-timeago').factory('timeAgo', ["$filter", "timeAgo
     var years = days / 365;
 
     function substitute(stringOrFunction, number) {
+      number = Math.round(number);
       var string = angular.isFunction(stringOrFunction) ?
         stringOrFunction(number, distanceMillis) : stringOrFunction;
       var value = ($l.numbers && $l.numbers[number]) || number;
       return string.replace(/%d/i, value);
     }
 
-    var words = seconds < 45 && substitute($l.seconds, Math.round(seconds)) ||
-      seconds < 90 && substitute($l.minute, 1) ||
-      minutes < 45 && substitute($l.minutes, Math.round(minutes)) ||
-      minutes < 90 && substitute($l.hour, 1) ||
-      hours < 24 && substitute($l.hours, Math.round(hours)) ||
-      hours < 42 && substitute($l.day, 1) ||
-      days < 30 && substitute($l.days, Math.round(days)) ||
-      days < 45 && substitute($l.month, 1) ||
-      days < 365 && substitute($l.months, Math.round(days / 30)) ||
-      years < 1.5 && substitute($l.year, 1) ||
-      substitute($l.years, Math.round(years));
+    var breakpoints = timeAgoSettings.breakpoints;
+    var words = seconds < breakpoints.secondsToMinute && substitute($l.seconds, seconds) ||
+      seconds < breakpoints.secondsToMinutes && substitute($l.minute, 1) ||
+      minutes < breakpoints.minutesToHour && substitute($l.minutes, minutes) ||
+      minutes < breakpoints.minutesToHours && substitute($l.hour, 1) ||
+      hours < breakpoints.hoursToDay && substitute($l.hours, hours) ||
+      hours < breakpoints.hoursToDays && substitute($l.day, 1) ||
+      days < breakpoints.daysToMonth && substitute($l.days, days) ||
+      days < breakpoints.daysToMonths && substitute($l.month, 1) ||
+      days < breakpoints.daysToYear && substitute($l.months, days / 30) ||
+      years < breakpoints.yearToYears && substitute($l.year, 1) ||
+      substitute($l.years, years);
 
     var separator = $l.wordSeparator === undefined ? ' ' : $l.wordSeparator;
     if (lang === 'he_IL') {
