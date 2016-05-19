@@ -18,7 +18,7 @@
     "test"
   ],
   "license": "MIT",
-  "main": "src/timeAgo.js",
+  "main": "dist/angular-timeago.js",
   "name": "angular-timeago",
   "repository": {
     "type": "git",
