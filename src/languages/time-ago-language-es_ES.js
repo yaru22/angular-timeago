@@ -3,7 +3,7 @@
 angular.module('yaru22.angular-timeago').config(function(timeAgoSettings) {
   timeAgoSettings.strings['es_LA'] = {
     prefixAgo: 'hace',
-    prefixFromNow: 'en',
+    prefixFromNow: 'dentro de',
     suffixAgo: null,
     suffixFromNow: null,
     seconds: 'menos de un minuto',
