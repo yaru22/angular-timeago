@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('yaru22.angular-timeago').config(function(timeAgoSettings) {
-  timeAgoSettings.strings['es_LA'] = {
+  timeAgoSettings.strings['es_ES'] = {
     prefixAgo: 'hace',
     prefixFromNow: 'dentro de',
     suffixAgo: null,
