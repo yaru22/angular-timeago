@@ -1,6 +1,6 @@
 /**
  * Angular directive/filter/service for formatting date so that it displays how long ago the given time was compared to now.
- * @version v0.4.1 - 2016-05-19
+ * @version v0.4.2 - 2016-06-15
  * @link https://github.com/yaru22/angular-timeago
  * @author Brian Park <yaru22@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -74,6 +74,29 @@ angular.module('yaru22.angular-timeago').config(["timeAgoSettings", function(tim
     months: '%d months',
     year: 'about a year',
     years: '%d years',
+    numbers: []
+  };
+}]);
+
+'use strict';
+
+angular.module('yaru22.angular-timeago').config(["timeAgoSettings", function(timeAgoSettings) {
+  timeAgoSettings.strings['es_LA'] = {
+    prefixAgo: 'hace',
+    prefixFromNow: 'dentro de',
+    suffixAgo: null,
+    suffixFromNow: null,
+    seconds: 'menos de un minuto',
+    minute: 'un minuto',
+    minutes: '%d minutos',
+    hour: 'una hora',
+    hours: '%d horas',
+    day: 'un día',
+    days: '%d días',
+    month: 'un mes',
+    months: '%d meses',
+    year: 'un año',
+    years: '%d años',
     numbers: []
   };
 }]);
