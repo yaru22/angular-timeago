@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+  - 0.10.45
+
+before_install:
+  - npm install -g grunt-cli
+  - npm install -g bower
+
+install:
+  - npm prune && npm install
+  - bower prune && bower install
+  - ./node_modules/grunt-protractor-runner/scripts/webdriver-manager-update
+  - grunt
+
+script:
+  - grunt test
+
+cache:
+  directories:
+    - node_modules
+    - bower_components

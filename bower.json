@@ -8,9 +8,7 @@
   },
   "description": "Angular directive/filter/service for formatting date so that it displays how long ago the given time was compared to now.",
   "devDependencies": {
-    "angular-mocks": "^1.2.10",
-    "chai": "1.9.0",
-    "jquery": "2.1.0"
+    "angular-mocks": "^1.2.10"
   },
   "homepage": "https://github.com/yaru22/angular-timeago",
   "ignore": [

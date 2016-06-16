@@ -19,9 +19,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'bower_components/chai/chai.js',
+      'node_modules/chai/chai.js',
       // needed for elem.find() lookup by other than tag name
-      'bower_components/jquery/dist/jquery.js',
+      'node_modules/jquery/dist/jquery.js',
 
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
@@ -84,7 +84,7 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // If browser does not capture in given timeout [ms], kill it
@@ -93,6 +93,13 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false
+    singleRun: false,
+
+    plugins:[
+      'karma-chrome-launcher',
+      'karma-mocha',
+      'karma-phantomjs-launcher',
+      'karma-ng-html2js-preprocessor'
+    ]
   });
 };
