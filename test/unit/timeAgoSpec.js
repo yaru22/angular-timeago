@@ -23,7 +23,7 @@ describe('timeAgo', function () {
 
   it('accept Date object', function () {
     var nowDate = new Date();
-    var nowDateString = ngDateFilter(nowDate, 'yyyy-MM-dd HH:mm');
+    var nowDateString = ngDateFilter(nowDate, 'yyyy-MM-dd HH:mm:ss');
     expect(filter(nowDate)).to.equal(filter(nowDateString));
   });
 
