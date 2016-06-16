@@ -11,7 +11,7 @@ angular.module('yaru22.angular-timeago').directive('timeAgo', function(timeAgo, 
       var fromTime;
 
       // Track changes to fromTime
-      scope.$watch('fromTime', function(value) {
+      scope.$watch('fromTime', function() {
         fromTime = timeAgo.parse(scope.fromTime);
       });
 

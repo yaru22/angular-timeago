@@ -2,5 +2,8 @@
 
 exports.config = {
   specs: ['test/e2e/*.spec.js', 'test/e2e/**/*.spec.js'],
-  baseUrl: 'http://localhost:9999'
+  baseUrl: 'http://localhost:9999',
+  capabilities: {
+    browserName: 'firefox'
+  }
 };
