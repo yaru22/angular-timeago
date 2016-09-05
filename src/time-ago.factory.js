@@ -1,4 +1,5 @@
 'use strict';
+/*global moment */
 
 angular.module('yaru22.angular-timeago').factory('timeAgo', function($filter, timeAgoSettings) {
   var service = {};
@@ -81,6 +82,8 @@ angular.module('yaru22.angular-timeago').factory('timeAgo', function($filter, ti
   service.parse = function(input) {
     if (input instanceof Date) {
       return input;
+    } else if ((typeof moment !== 'undefined') && moment.isMoment(input)) {
+      return input.toDate();
     } else if (angular.isNumber(input)) {
       return new Date(input);
     } else if (/^\d+$/.test(input)) {
