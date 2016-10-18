@@ -4,7 +4,8 @@ angular.module('yaru22.angular-timeago').directive('timeAgo', function(timeAgo, 
   return {
     scope: {
       fromTime: '@',
-      format: '@'
+      format: '@',
+      timezone: '@'
     },
     restrict: 'EA',
     link: function(scope, elem) {
@@ -19,7 +20,7 @@ angular.module('yaru22.angular-timeago').directive('timeAgo', function(timeAgo, 
       scope.$watch(function() {
         return nowTime() - fromTime;
       }, function(value) {
-        angular.element(elem).text(timeAgo.inWords(value, fromTime, scope.format));
+        angular.element(elem).text(timeAgo.inWords(value, fromTime, scope.format, scope.timezone));
       });
     }
   };

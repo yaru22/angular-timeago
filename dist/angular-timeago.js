@@ -1,6 +1,6 @@
 /**
  * Angular directive/filter/service for formatting date so that it displays how long ago the given time was compared to now.
- * @version v0.4.3 - 2016-09-05
+ * @version v0.4.3 - 2016-10-19
  * @link https://github.com/yaru22/angular-timeago
  * @author Brian Park <yaru22@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -411,7 +411,8 @@ angular.module('yaru22.angular-timeago').directive('timeAgo', ["timeAgo", "nowTi
   return {
     scope: {
       fromTime: '@',
-      format: '@'
+      format: '@',
+      timezone: '@'
     },
     restrict: 'EA',
     link: function(scope, elem) {
@@ -426,7 +427,7 @@ angular.module('yaru22.angular-timeago').directive('timeAgo', ["timeAgo", "nowTi
       scope.$watch(function() {
         return nowTime() - fromTime;
       }, function(value) {
-        angular.element(elem).text(timeAgo.inWords(value, fromTime, scope.format));
+        angular.element(elem).text(timeAgo.inWords(value, fromTime, scope.format, scope.timezone));
       });
     }
   };
