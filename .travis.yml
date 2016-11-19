@@ -10,11 +10,9 @@ before_script:
 
 before_install:
   - npm install -g grunt-cli
-  - npm install -g bower
 
 install:
   - npm prune && npm install
-  - bower prune && bower install
   - node_modules/protractor/bin/webdriver-manager update --standalone --firefox
   - node_modules/protractor/bin/webdriver-manager start 2>&1 &  
   - sleep 3
@@ -25,4 +23,3 @@ script:
 cache:
   directories:
     - node_modules
-    - bower_components

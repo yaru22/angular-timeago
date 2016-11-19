@@ -57,7 +57,7 @@ module.exports = function(grunt) {
           var middlewares = [];
           var serveStatic = require('serve-static');
           middlewares.push(serveStatic(dirs.demo));
-          middlewares.push(connect().use('/bower_components', serveStatic('./bower_components')));
+          middlewares.push(connect().use('/node_modules', serveStatic('./node_modules')));
           middlewares.push(connect().use('/dist', serveStatic(dirs.dist)));
           return middlewares;
         }

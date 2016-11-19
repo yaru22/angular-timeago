@@ -20,8 +20,11 @@
     "timeago",
     "moment"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "angular": "^1.2.10"
+  },
   "devDependencies": {
+    "angular-mocks": "^1.2.10",
     "chai": "3.5.0",
     "grunt": "1.0.1",
     "grunt-contrib-clean": "1.0.0",
