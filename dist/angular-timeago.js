@@ -1,6 +1,6 @@
 /**
  * Angular directive/filter/service for formatting date so that it displays how long ago the given time was compared to now.
- * @version v0.4.3 - 2016-09-05
+ * @version v0.4.3 - 2016-11-13
  * @link https://github.com/yaru22/angular-timeago
  * @author Brian Park <yaru22@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -28,6 +28,29 @@ angular.module('yaru22.angular-timeago').config(["timeAgoSettings", function(tim
     months: '%d mesos',
     year: 'prop d\'un any',
     years: '%d anys',
+    numbers: []
+  };
+}]);
+
+'use strict';
+
+angular.module('yaru22.angular-timeago').config(["timeAgoSettings", function(timeAgoSettings) {
+  timeAgoSettings.strings['da_DK'] = {
+    prefixAgo: null,
+    prefixFromNow: null,
+    suffixAgo: 'siden',
+    suffixFromNow: null,
+    seconds: 'mindre end et minut',
+    minute: 'omkring et minut',
+    minutes: '%d minuter',
+    hour: 'omkring en time',
+    hours: 'omkring %d timer',
+    day: 'en dag',
+    days: '%d dage',
+    month: 'omkring en m\xe5ned',
+    months: '%d m\xe5neder',
+    year: 'omkring et \xe5r',
+    years: '%d \xe5r',
     numbers: []
   };
 }]);
@@ -288,6 +311,29 @@ angular.module('yaru22.angular-timeago').config(["timeAgoSettings", function(tim
 'use strict';
 
 angular.module('yaru22.angular-timeago').config(["timeAgoSettings", function(timeAgoSettings) {
+  timeAgoSettings.strings['ru'] = {
+    prefixAgo: null,
+    prefixFromNow: null,
+    suffixAgo: 'назад',
+    suffixFromNow: null,
+    seconds: 'меньше минуты',
+    minute: 'около минуты',
+    minutes: '%d мин.',
+    hour: 'около часа',
+    hours: 'около %d час.',
+    day: 'день',
+    days: '%d дн.',
+    month: 'около месяца',
+    months: '%d мес.',
+    year: 'около года',
+    years: '%d г.',
+    numbers: []
+  };
+}]);
+
+'use strict';
+
+angular.module('yaru22.angular-timeago').config(["timeAgoSettings", function(timeAgoSettings) {
   timeAgoSettings.strings['sv_SE'] = {
     prefixAgo: null,
     prefixFromNow: 'om',
@@ -304,6 +350,29 @@ angular.module('yaru22.angular-timeago').config(["timeAgoSettings", function(tim
     months: '%d månader',
     year: 'cirka ett år',
     years: '%d år',
+    numbers: []
+  };
+}]);
+
+'use strict';
+
+angular.module('yaru22.angular-timeago').config(["timeAgoSettings", function(timeAgoSettings) {
+  timeAgoSettings.strings['tr_TR'] = {
+    prefixAgo: null,
+    prefixFromNow: null,
+    suffixAgo: 'önce',
+    suffixFromNow: 'şu andan itibaren',
+    seconds: 'bir dakikadan daha az',
+    minute: 'bir dakika gibi',
+    minutes: '%d dakika',
+    hour: 'bir saat gibi',
+    hours: '%d saat gibi',
+    day: 'bir gün',
+    days: '%d gün',
+    month: 'bir ay gibi',
+    months: '%d ay',
+    year: 'bir yıl gibi',
+    years: '%d yıl',
     numbers: []
   };
 }]);
