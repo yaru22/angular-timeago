@@ -18,7 +18,7 @@ angular.module('yaru22.angular-timeago').config(function(timeAgoSettings) {
           return future5;
         }
       }
-    }
+    };
   }
 
   timeAgoSettings.strings['cs_CZ'] = {
