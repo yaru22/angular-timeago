@@ -11,3 +11,5 @@ log
 node_modules
 .project
 .settings
+.idea
+angular-timeago.iml
