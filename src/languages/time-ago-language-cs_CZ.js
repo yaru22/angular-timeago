@@ -2,14 +2,15 @@
 
 angular.module('yaru22.angular-timeago').config(function(timeAgoSettings) {
 
-  /*
-   * Czech language uses 2 different versions for future based on the digit being lower then 5 or not.
+  /**
+   * Czech language uses 2 different versions for future based on the digit being
+   * lower than 5 or not.
    */
   function resolvePastAndFuture(past, future, future5) {
     return function(d, millis) {
       var isFuture = millis < 0;
 
-      if(!isFuture) {
+      if (!isFuture) {
         return past;
       } else {
         if (d <= 4) {
