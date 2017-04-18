@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('yaru22.angular-timeago').config(function(timeAgoSettings) {
-  timeAgoSettings.strings['ru'] = {
+  timeAgoSettings.strings['ru_RU'] = {
     prefixAgo: null,
     prefixFromNow: null,
     suffixAgo: 'назад',
