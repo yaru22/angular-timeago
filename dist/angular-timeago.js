@@ -1,6 +1,6 @@
 /**
  * Angular directive/filter/service for formatting date so that it displays how long ago the given time was compared to now.
- * @version v0.4.4 - 2016-11-19
+ * @version v0.4.5 - 2017-04-17
  * @link https://github.com/yaru22/angular-timeago
  * @author Brian Park <yaru22@gmail.com>
  * @license MIT License, http://www.opensource.org/licenses/MIT
@@ -28,6 +28,52 @@ angular.module('yaru22.angular-timeago').config(["timeAgoSettings", function(tim
     months: '%d mesos',
     year: 'prop d\'un any',
     years: '%d anys',
+    numbers: []
+  };
+}]);
+
+'use strict';
+
+angular.module('yaru22.angular-timeago').config(["timeAgoSettings", function(timeAgoSettings) {
+
+  /**
+   * Czech language uses 2 different versions for future based on the digit being
+   * lower than 5 or not.
+   */
+  function resolvePastAndFuture(past, future, future5) {
+    return function(d, millis) {
+      var isFuture = millis < 0;
+
+      if (!isFuture) {
+        return past;
+      } else {
+        if (d <= 4) {
+          return future;
+        } else {
+          return future5;
+        }
+      }
+    };
+  }
+
+  timeAgoSettings.strings['cs_CZ'] = {
+    prefixAgo: 'prěd',
+    prefixFromNow: 'za',
+    suffixAgo: null,
+    suffixFromNow: null,
+
+    //the below works for past
+    seconds: resolvePastAndFuture('méně než minutou', 'méne než minutu', 'méne než minutu'),
+    minute: resolvePastAndFuture('minutou', 'minutu', 'minutu'),
+    minutes: resolvePastAndFuture('%d minutami', '%d minuty', '%d minút'),
+    hour: resolvePastAndFuture('hodinou', 'hodinu', 'hodinu'),
+    hours: resolvePastAndFuture('%d hodinama', '%d hodiny', '%d hodin'),
+    day: resolvePastAndFuture('dnem', 'den', 'den'),
+    days: resolvePastAndFuture('%d dny', '%d dny', '%d dnů'),
+    month: resolvePastAndFuture('měsícem', 'měsíc', 'měsíc'),
+    months: resolvePastAndFuture('%d měsíci', '%d měsíce', '%d měsíců'),
+    year: resolvePastAndFuture('rokem', 'rok', 'rok'),
+    years: resolvePastAndFuture('%d lety', '%d roky', '%d let'),
     numbers: []
   };
 }]);
@@ -311,7 +357,30 @@ angular.module('yaru22.angular-timeago').config(["timeAgoSettings", function(tim
 'use strict';
 
 angular.module('yaru22.angular-timeago').config(["timeAgoSettings", function(timeAgoSettings) {
-  timeAgoSettings.strings['ru'] = {
+  timeAgoSettings.strings['ru_RU'] = {
+    prefixAgo: null,
+    prefixFromNow: null,
+    suffixAgo: 'назад',
+    suffixFromNow: 'с текущего момента',
+    seconds: 'менее минуты',
+    minute: 'около минуты',
+    minutes: '%d мин.',
+    hour: 'около часа',
+    hours: 'около %d ч.',
+    day: 'день',
+    days: '%d дн.',
+    month: 'около месяца',
+    months: '%d мес.',
+    year: 'около года',
+    years: '%d года',
+    numbers: []
+  };
+}]);
+
+'use strict';
+
+angular.module('yaru22.angular-timeago').config(["timeAgoSettings", function(timeAgoSettings) {
+  timeAgoSettings.strings['ru_RU'] = {
     prefixAgo: null,
     prefixFromNow: null,
     suffixAgo: 'назад',
