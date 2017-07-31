@@ -43,9 +43,24 @@
     This repo was created <span time-ago from-time="2014-03-11T05:25:00Z"></span>
   </div>
 
+  <div class="directive-example-not-found-property">
+    <h2>Directive Example - property not found</h2>
+    <p>You opened this demo page <time-ago from-time='{{ notFoundProperty }}'></time-ago></p>
+  </div>
+
+  <div class="filter-example-not-found-property">
+    <h2>Filter Example - property not found</h2>
+    <p>You opened this demo page {{ notFoundProperty | timeAgo }}</p>
+  </div>
 
   <script src="node_modules/angular/angular.js"></script>
-  <script src="dist/angular-timeago.js"></script>
+  <script src="src/module.js"></script>
+  <script src="src/now-time.factory.js"></script>
+  <script src="src/time-ago-settings.constant.js"></script>
+  <script src="src/time-ago.directive.js"></script>
+  <script src="src/time-ago.factory.js"></script>
+  <script src="src/time-ago.filter.js"></script>
+  <script src="src/languages/time-ago-language-en_US.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
