@@ -9,7 +9,7 @@ angular.module('yaru22.angular-timeago').config(function(timeAgoSettings) {
     seconds: 'meno di un minuto',
     minute: 'circa un minuto',
     minutes: '%d minuti',
-    hour: 'circa un\' ora',
+    hour: 'circa un\'ora',
     hours: 'circa %d ore',
     day: 'un giorno',
     days: '%d giorni',
