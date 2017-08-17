@@ -9,7 +9,7 @@ angular.module('yaru22.angular-timeago').config(function(timeAgoSettings) {
     return function(d, millis) {
       var isFuture = millis < 0;
 
-      if(!isFuture) {
+      if (!isFuture) {
         return past;
       } else {
         if (d <= 4) {
