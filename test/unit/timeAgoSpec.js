@@ -14,6 +14,7 @@ describe('timeAgo', function () {
     ngDateFilter = dateFilter;
     timeAgo = _timeAgo_;
     timeAgoSettings = _timeAgoSettings_;
+    timeAgoSettings.overrideLang = undefined;
   }));
 
   it('test filter', function () {
@@ -35,7 +36,7 @@ describe('timeAgo', function () {
     expect(filter(nowDate)).to.equal([strs.prefixAgo, strs.seconds, strs.suffixAgo].join(' ').trim());
   });
 
-  it('settings.fullDateAfterSeconds works', function() {
+  it('settings.fullDateAfterSeconds works', function () {
     // force it to display the full date always
     timeAgoSettings.fullDateAfterSeconds = 0;
     var nowDate = new Date();
@@ -46,4 +47,7 @@ describe('timeAgo', function () {
     expect(ngDateString).to.equal(taDateString);
   });
 
+  it('accept empty property', function () {
+    expect(filter(undefined)).to.equal(null);
+  });
 });

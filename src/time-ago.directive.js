@@ -12,14 +12,24 @@ angular.module('yaru22.angular-timeago').directive('timeAgo', function(timeAgo, 
 
       // Track changes to fromTime
       scope.$watch('fromTime', function() {
-        fromTime = timeAgo.parse(scope.fromTime);
+        fromTime = null;
+        if (!!scope.fromTime) {
+          fromTime = timeAgo.parse(scope.fromTime);
+        }
       });
 
       // Track changes to time difference
       scope.$watch(function() {
-        return nowTime() - fromTime;
+        if (!!fromTime) {
+          return nowTime() - fromTime;
+        }
+        return null;
       }, function(value) {
-        angular.element(elem).text(timeAgo.inWords(value, fromTime, scope.format));
+        var text = '';
+        if (!!value) {
+          text = timeAgo.inWords(value, fromTime, scope.format);
+        }
+        angular.element(elem).text(text);
       });
     }
   };

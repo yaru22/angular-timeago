@@ -16,6 +16,14 @@ describe('basic frontend testing', function () {
     expect(element(by.css('.filter-example')).getText()).toMatch(/^(Filter Example\nYou opened this demo page )(less than|about)( a minute ago)$/);
   });
 
+  it('time ago directive - property not found', function () {
+    expect(element(by.css('.directive-example-not-found-property')).getText()).toMatch(/^(Directive Example - property not found\nYou opened this demo page)$/);
+  });
+
+  it('time ago filter - property not found', function () {
+    expect(element(by.css('.filter-example-not-found-property')).getText()).toMatch(/^(Filter Example - property not found\nYou opened this demo page)$/);
+  });
+
   it('loading time', function () {
     var testStartTime = Date.now();
     element(by.css('.loading-time')).getText().then(function (loadingTimeText) {
