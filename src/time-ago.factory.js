@@ -94,6 +94,7 @@ angular.module('yaru22.angular-timeago').factory('timeAgo', function($filter, ti
       s = s.replace(/-/, '/').replace(/-/, '/');
       s = s.replace(/T/, ' ').replace(/Z/, ' UTC');
       s = s.replace(/([\+\-]\d\d)\:?(\d\d)/, ' $1$2'); // -04:00 -> -0400
+      s = s.replace(/^"(.*)"$/, '$1');
       return new Date(s);
     }
   };
